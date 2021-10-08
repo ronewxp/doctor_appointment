@@ -43,19 +43,19 @@ class AppointmentController extends Controller
         $date = str_replace('/', '-', $request->input('date'));
         // create the mysql date format
         //$appointmentDate= Carbon::createFromFormat('Y-m-d', $date);
-        //$newDate = \Carbon\Carbon::parse($date)->format('Y-m-d H:i');
+        $newDate = \Carbon\Carbon::parse($date)->format('Y-m-d H:i');
 
         //dd($newDate);
         $this->validate($request,[
             'user_id' => 'required|integer',
             'doctor_id' => 'required|integer',
-            'date' => 'required|date',
+            'date' => 'required',
         ]);
 
         $appointment = Appointment::create([
             'user_id'=>$request->user_id,
             'doctor_id'=>$request->doctor_id,
-            'date'=>$request->$date
+            'date'=>$newDate
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
         return redirect()->route('appointment.index');
