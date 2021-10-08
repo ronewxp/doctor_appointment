@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Auth::routes();
 
@@ -31,3 +32,8 @@ Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_lis
 Route::get('/doctor_dashboard', [DoctorController::class, 'DoctordDashboard'])->name('doctor_dashboard');
 
 
+//Patient route list
+Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
+
+//appointment route list
+Route::resource('appointment', AppointmentController::class);

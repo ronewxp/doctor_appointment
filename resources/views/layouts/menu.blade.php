@@ -29,3 +29,11 @@
     </li>
 @endcan
 
+@can('app.users.index')
+    <li class="{{ Request::is('patient_list*') ? 'active' : '' }}">
+        <a href="{!! route('patient_list') !!}"><i class="fa  fa-wheelchair"></i><span>Patient List</span></a>
+    </li>
+@endcan
+
+
+

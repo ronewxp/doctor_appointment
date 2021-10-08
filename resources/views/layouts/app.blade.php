@@ -46,10 +46,19 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
 
-                 <button style="margin-top: 8px" type="button" class="btn btn-primary" onclick="publicIp()">Public Ip</button>
+                <button style="margin-top: 8px" type="button" class="btn btn-primary" onclick="publicIp()">Public Ip</button>
+
+                <a style="margin-top: 8px" href="{{route('welcome')}}" class="btn btn-primary" target="_blank">Website</a>
+
+
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <li>
+                            <div class="btn-group" role="group" aria-label="Button group">
+                                <div id="liveClock" style="font-size: large; margin-top: 14px; " class="clock"></div>
+                            </div>
+                        </li>
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
@@ -65,7 +74,7 @@
                                 <li class="user-header">
                                     <img width="40" height="40" class="img-circle" src="{{ Auth::user()->getFirstMediaUrl('avatar') != null ? Auth::user()->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}"
                                          alt="avatar">
-                                         
+
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
@@ -170,6 +179,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('js/iziToast.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sceript.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/realTimeClock.js') }}"></script>
+
 
     @include('vendor.lara-izitoast.toast')
     @stack('scripts')

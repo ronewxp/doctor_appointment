@@ -12,14 +12,18 @@ class DoctorController extends Controller
     public function index()
     {
         //Gate::authorize('app.dashboard');
-        $users = User::where('role_id','=',3)->get();
-        return view('doctor.doctorList',compact('users'));
+        $doctors = User::where('role_id',3)->get();
+        return view('doctor.doctorList',compact('doctors'));
     }
 
     public function DoctordDashboard()
     {
         //Gate::authorize('app.dashboard');
-        return view('doctor.doctor_dashboard');
+        $doctors = User::where('role_id',3)->get();
+
+        $patient = User::where('role_id',2)->get();
+
+        return view('doctor.doctor_dashboard',compact('doctors','patient'));
     }
 
 
