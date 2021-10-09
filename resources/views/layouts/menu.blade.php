@@ -35,5 +35,11 @@
     </li>
 @endcan
 
+@can('app.users.index')
+    <li class="{{ Request::is('appointment*') ? 'active' : '' }}">
+        <a href="{!! route('appointment.index') !!}"><i class="fa  fa-hospital-o"></i><span>All Appointment</span></a>
+    </li>
+@endcan
+
 
 

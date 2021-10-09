@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Appointment extends Model
 {
@@ -18,6 +19,14 @@ class Appointment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    function getDoctor($uerId) {
+        $id =$uerId;
+        return User::findOrFail($id)->name;
+    }
+    function getUser($uerId) {
+        $id =$uerId;
+        return User::findOrFail($id)->name;
     }
 
 

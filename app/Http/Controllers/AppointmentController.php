@@ -17,7 +17,9 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+        $appointment = Appointment::all();
 
+        return view('appointment.index',compact('appointment'));
 
     }
 
@@ -43,7 +45,7 @@ class AppointmentController extends Controller
         $date = str_replace('/', '-', $request->input('date'));
         // create the mysql date format
         //$appointmentDate= Carbon::createFromFormat('Y-m-d', $date);
-        $newDate = \Carbon\Carbon::parse($date)->format('Y-m-d H:i');
+        $newDate = Carbon::parse($date)->format('Y-m-d H:i');
 
         //dd($newDate);
         $this->validate($request,[
@@ -58,7 +60,7 @@ class AppointmentController extends Controller
             'date'=>$newDate
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
-        return redirect()->route('appointment.index');
+        return redirect()->route('welcome');
     }
 
     /**

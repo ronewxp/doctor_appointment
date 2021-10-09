@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name') }}</title>
 
@@ -13,22 +12,22 @@
 
     </head>
     <body>
-            @if (Route::has('login'))
-                <div>
-                    @auth
-                        <a href="{{ url('/home') }}" class="">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+        <div class="container">
+                    @if (Route::has('login'))
+                        <div>
+                            @auth
+                                <a href="{{ url('/home') }}" class="">Home</a>
+                            @else
+                                <a href="{{ route('login') }}" class="">Login</a>
 
-            <div class="container">
-                <div class="row">
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="">Register</a>
+                                @endif
+                            @endauth
+                        </div>
+                    @endif
+               <div class="row">
                     @foreach($doctors as $key=> $doctor )
                         <div class="col-md-3">
                         <div class="card">
@@ -54,8 +53,8 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
-            </div>
+               </div>
+        </div>
 
 
             <!-- jQuery 3.1.1 -->
