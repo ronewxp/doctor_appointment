@@ -23,6 +23,25 @@ class AppointmentController extends Controller
 
     }
 
+    public function myAppointment()
+    {
+        $user=Auth::id();
+        $appointment = Appointment::where('user_id',$user)->get();
+        //dd($appointment);
+
+        return view('appointment.myAppointment',compact('appointment'));
+
+    }
+
+    public function DoctorAppointment()
+    {
+        $user=Auth::id();
+        $appointment = Appointment::where('doctor_id',$user)->get();
+        //dd($appointment);
+
+        return view('appointment.doctorAppointment',compact('appointment'));
+
+    }
     /**
      * Show the form for creating a new resource.
      *

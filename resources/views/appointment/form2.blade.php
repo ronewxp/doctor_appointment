@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <link href="{{ asset('css/cardAppointment.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 @endpush
@@ -50,55 +50,53 @@
                 <!-- TABLE: LATEST ORDERS -->
                 <div class="">
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-3">
+                        <div class="col-md-6">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Doctor Information</div>
                                 <div class="panel-body">
 
                                     <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
+                                    <div>
+                                        <img class="card-img-top" src="{{ $doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="Avatar">
 
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <img src="{{ $doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" class="img-fluid" alt="image">
-                                        </div>
-                                        <div class="card-body">
-                                            <h2>{{$doctors->name}}</h2>
-                                            <h3>{{$doctors->degree}}</h3>
-                                            <h4>Specialists</h4>
+                                        <h4><b>{{$doctors->name}}</b></h4>
+
+                                        <p>{{$doctors->degree}}</p>
+
+                                        <p>Specialists</p>
+
+                                        <p>
                                             @if($doctors->status)
                                                 <span class="label label-success">Active</span>
                                             @else
                                                 <span class="label label-danger">InActive</span>
                                             @endif
-                                        </div>
-                                    </div>
 
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">My Information</div>
                                 <div class="panel-body">
 
                                     <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
+                                            <img class="card-img-top" src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="Avatar">
 
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <img src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" class="img-fluid" alt="image">
-                                        </div>
-                                        <div class="card-body">
-                                            <h2>{{$user->name}}</h2>
-                                            <h3>{{$user->degree}}</h3>
-                                            <h4>Specialists</h4>
-                                            @if($user->status)
-                                                <span class="label label-success">Active</span>
-                                            @else
-                                                <span class="label label-danger">InActive</span>
-                                            @endif
-                                        </div>
+                                            <h4><b>{{$user->name}}</b></h4>
 
-                                    </div>
+                                            <p>{{$user->degree}}</p>
+
+                                            <p>
+                                                @if($user->status)
+                                                    <span class="label label-success">Active</span>
+                                                @else
+                                                    <span class="label label-danger">InActive</span>
+                                                @endif
+
+                                            </p>
 
 
                                             <label for="date">Appointment Date & Time</label>

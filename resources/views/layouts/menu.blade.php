@@ -41,5 +41,17 @@
     </li>
 @endcan
 
+@can('app.users.index')
+    <li class="{{ Request::is('myAppointment*') ? 'active' : '' }}">
+        <a href="{!! route('myAppointment') !!}"><i class="fa  fa-hospital-o"></i><span>My Appointment</span></a>
+    </li>
+@endcan
+
+@can('app.users.index')
+    <li class="{{ Request::is('doctorAppointment*') ? 'active' : '' }}">
+        <a href="{!! route('doctorAppointment') !!}"><i class="fa  fa-hospital-o"></i><span>Doctor Appointment</span></a>
+    </li>
+@endcan
+
 
 

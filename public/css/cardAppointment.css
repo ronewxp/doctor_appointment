@@ -1,0 +1,34 @@
+.card{
+    background: #f7f5ed;
+    border-radius: 15px;
+}
+.card .card-header{
+    max-height: 200px;
+    min-height: 200px;
+    overflow: hidden;
+}
+.card .card-header .img-fluid{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+}
+.card .card-body{
+    padding: 15px;
+    background: #f7f5ed;
+    overflow: overlay;
+}
+.card .card-body h2{
+    margin-top: 0px;
+}
+.card .card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.card .card-footer a{
+    border-radius: 26px;
+    padding: 6px 20px;
+}

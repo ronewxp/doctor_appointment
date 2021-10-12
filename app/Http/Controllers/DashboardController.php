@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,6 +19,8 @@ class DashboardController extends Controller
 
         $patient = User::where('role_id',2)->get();
 
-        return view('dashboard',compact('doctors','patient'));
+        $appointment = Appointment::all();
+
+        return view('dashboard',compact('doctors','patient','appointment'));
     }
 }
