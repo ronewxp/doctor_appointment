@@ -1,60 +1,75 @@
-<h1 align="center"><img src="https://assets.infyom.com/open-source/infyom-logo.png" alt="InfyOm"></h1>
+# Getting started
 
-# Laravel Boilerplate for AdminLTE Theme
+​
 
-Laravel Boilerplate with [AdminLTE](https://adminlte.io/) Theme with [InfyOm Laravel Generator](https://github.com/InfyOmLabs/laravel-generator).
-Following things are ready to be used directly with AdminLTE Theme.
+## Installation
 
-- Signup
-- Login
-- Forgot Password
-- Password Reset
-- Home Layout with Sidebar
+​
 
-## Packages Installed
+Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/8.x)
 
-- InfyOm Laravel Generator
-- AdminLTE Templates
-- Laravel UI
-- Laravel Collective
+​
 
-## Usage
+Alternative installation is possible without local dependencies relying on [Docker](#docker). 
 
-1. Clone/Download a repo.
-2. Copy `.env.example` file to `.env` & Setup your environment variables
-3. Run `composer install`
-4. Generate application key by running `php artisan key:generate`
+​
 
-Once everything is installed, you are ready to go with generator.
+Clone the repository
 
-## Support Us
+​
 
-We have created [14+ Laravel packages](https://github.com/InfyOmLabs) and invested a lot of resources into creating these all packages and maintaining them.
+    git clone git@github.com:gothinkster/laravel-realworld-example-app.git
 
-You can support us by either sponsoring us or buying one of our paid products. Or help us by spreading the word about us on social platforms via tweets and posts.
+​
 
-### Sponsors
+Switch to the repo folder
 
-[Become a sponsor](https://opencollective.com/infyomlabs#sponsor) and get your logo on our README on Github with a link to your site.
+​
 
-<a href="https://opencollective.com/infyomlabs#sponsor"><img src="https://opencollective.com/infyomlabs/sponsors.svg?width=890"></a>
+    cd laravel-realworld-example-app
 
-### Backers
+​
 
-[Become a backer](https://opencollective.com/infyomlabs#backer) and get your image on our README on Github with a link to your site.
+Install all the dependencies using composer
 
-<a href="https://opencollective.com/infyomlabs#backer"><img src="https://opencollective.com/infyomlabs/backers.svg?width=890"></a>
+​
 
-### Buy our Paid Products
+    composer install
 
-[![InfyHMS](https://assets.infyom.com/open-source/infyhms-banner.png)](https://bit.ly/3mtqXuk)
+​
 
-You can also check out our other paid products on [CodeCanyon](https://codecanyon.net/user/infyomlabs/portfolio).
+Copy the example env file and make the required configuration changes in the .env file
 
-### Follow Us
+​
 
-- [Twitter](https://twitter.com/infyom)
-- [Facebook](https://www.facebook.com/infyom)
-- [LinkedIn](https://in.linkedin.com/company/infyom-technologies)
-- [Youtube](https://www.youtube.com/channel/UC8IvwfChD6i7Wp4yZp3tNsQ)
-- [Contact Us](https://infyom.com/contact-us)
+    cp .env.example .env
+
+​
+
+Generate a new application key
+
+​
+
+    php artisan key:generate
+
+​
+
+​
+
+Run the database migrations (**Set the database connection in .env before migrating**)
+
+​
+
+    php artisan migrate --seed
+
+​
+
+Start the local development server
+
+​
+
+    php artisan serve
+
+​
+
+You can now access the server at http://localhost:8000
