@@ -32,7 +32,7 @@
                         <div class="col-md-3">
                         <div class="card">
                             <img class="card-img-top" src="{{ $doctor->getFirstMediaUrl('avatar') != null ? $doctor->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="Avatar">
-                            <div class="container">
+                            <div class="card-body">
                                 <b>{{$doctor->name}}</b>
 
                                 <p>{{$doctor->degree}}</p>
