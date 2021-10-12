@@ -18,8 +18,7 @@ Clone the repository
 
 ​
 
-    git clone git@github.com:gothinkster/laravel-realworld-example-app.git
-
+    git clone https://github.com/ronewxp/doctor_appointment.git
 ​
 
 Switch to the repo folder
@@ -76,25 +75,25 @@ You can now access the server at http://localhost:8000
 
 
 **TL;DR command list**
-51
+
 ​
-52
+
     git clone https://github.com/ronewxp/doctor_appointment.git
-53
+
     composer install
-54
+
     npm install
-55
+
     cp .env.example .env
-56
+
     php artisan key:generate
-57
+
     
-58
+
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
-59
+
 ​
-60
+
     php artisan migrate --seed
-61
+
     php artisan serve
