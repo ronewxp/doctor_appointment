@@ -25,7 +25,7 @@ Switch to the repo folder
 
 ​
 
-    cd laravel-realworld-example-app
+    cd doctor_appointment
 
 ​
 
