@@ -53,6 +53,12 @@ Generate a new application key
 
 ​
 
+The Public Disk To create the symbolic link, you may use the storage:link Artisan command:
+
+​
+
+    php artisan storage:link
+    
 ​
 
 Run the database migrations (**Set the database connection in .env before migrating**)
