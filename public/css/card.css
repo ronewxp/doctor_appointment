@@ -1,0 +1,52 @@
+.navbar{
+    background: #faf2f2;
+}
+.navbar .icon-bar{
+    background: blue;
+}
+.card-section{
+    padding-bottom: 50px;
+}
+.card-section .col-md-3{
+    margin-top: 30px;
+}
+.card-section .card{
+    background: #f7f5ed;
+    border-radius: 15px;
+}
+.card-section .card .card-header{
+    max-height: 200px;
+    min-height: 200px;
+    overflow: hidden;
+}
+.card-section .card .card-header .img-fluid{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+}
+.card-section .card .card-body{
+    padding: 15px;
+    background: #f7f5ed;
+    overflow: overlay;
+}
+.card-section .card .card-body h2{
+    margin-top: 0px;
+}
+.card-section .card .card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.card-section .card .card-footer a{
+    border-radius: 26px;
+    padding: 6px 20px;
+}
+
+
+footer{
+    background: #cecdcc;
+    padding: 30px 0px;
+}
