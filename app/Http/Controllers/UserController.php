@@ -51,7 +51,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'nullable|max:100|unique:users',
             'degree' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:500',
+            'specialists' => 'nullable|string|max:500',
             'dob' => 'nullable|date',
             'role' => 'required',
             'password' => 'required|confirmed|min:6',
@@ -63,8 +63,9 @@ class UserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'degree' => $request->degree,
-            'description' => $request->description,
+            'specialists' => $request->specialists,
             'dob' => $request->dob,
+            'weight' => $request->weight,
             'password' => Hash::make($request->password),
             'status' => $request->filled('status')
 
@@ -121,7 +122,7 @@ class UserController extends Controller
             'role' => 'required',
             'phone' => 'nullable|max:100|unique:users,phone,'.$user->id,
             'degree' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:500',
+            'specialists' => 'nullable|string|max:500',
             'dob' => 'nullable|date',
             'password' => 'nullable|confirmed|min:6',
             'avatar' => 'nullable|image',
@@ -132,8 +133,9 @@ class UserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'degree' => $request->degree,
-            'description' => $request->description,
+            'specialists' => $request->specialists,
             'dob' => $request->dob,
+            'weight' => $request->weight,
             'password' =>isset($request->password) ? Hash::make($request->password):$user->password,
             'status' => $request->filled('status')
 

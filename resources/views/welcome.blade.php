@@ -68,8 +68,8 @@
                         </div>
                         <div class="card-body">
                             <h4>{{$doctor->name}}</h4>
-                            <h5>{{$doctor->degree}}</h5>
-                            <h5>Specialists</h5>
+                            <h5><b>Degree</b>: {{$doctor->degree}}</h5>
+                            <h5><b>Specialists</b> : {{$doctor->specialists}}</h5>
                             @if($doctor->status)
                             <span class="label label-success">Active</span>
                             @else

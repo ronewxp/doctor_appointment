@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AppointmentController extends Controller
 {
@@ -17,6 +18,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+        Gate::authorize('appointment.index');
+
         $appointment = Appointment::all();
 
         return view('appointment.index',compact('appointment'));
@@ -25,6 +28,7 @@ class AppointmentController extends Controller
 
     public function myAppointment()
     {
+        Gate::authorize('myAppointment');
         $user=Auth::id();
         $appointment = Appointment::where('user_id',$user)->get();
         //dd($appointment);
@@ -35,6 +39,7 @@ class AppointmentController extends Controller
 
     public function DoctorAppointment()
     {
+        Gate::authorize('doctorAppointment');
         $user=Auth::id();
         $appointment = Appointment::where('doctor_id',$user)->get();
         //dd($appointment);
@@ -60,6 +65,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('appointment.create');
 
         $date = str_replace('/', '-', $request->input('date'));
         // create the mysql date format
@@ -90,6 +96,7 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
+        Gate::authorize('appointment.create');
 
         $doctors = User::findOrFail($id);
         $user= Auth::user();

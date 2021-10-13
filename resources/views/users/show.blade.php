@@ -39,7 +39,7 @@
                 <!-- TABLE: LATEST ORDERS -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-rounded" src="{{$user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="User profile picture">
+                            <img style="width: 250px" class="profile-user-img img-responsive img-rounded" src="{{$user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="User profile picture">
 
                             <h3 class="profile-username text-center">{{$user->name}}</h3>
 
@@ -83,17 +83,22 @@
                                 </li>
 
                                 <li class="list-group-item">
+                                    <b>specialists</b> <a class="pull-right">{{ $user->specialists }}</a>
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Weight</b> <a class="pull-right">{{ $user->weight }} Kg</a>
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
                                     <b>Joined Date</b> <a class="pull-right">{{$user->created_at->diffForHumans()}}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Update Information</b> <a class="pull-right">{{$user->updated_at->diffForHumans()}}</a>
                                 </li>
 
-                                <li class="list-group-item">
-                                    <b>Description</b> <a class="">
-                                        <textarea type="text" class="form-control" name="description" readonly>{{ $user->description }}</textarea>
-                                    </a>
-                                </li>
 
                             </ul>
                             <a href="{{route('app.users.index')}}" class="btn btn-lg btn-danger">

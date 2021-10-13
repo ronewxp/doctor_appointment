@@ -22,6 +22,7 @@ class UserSeeser extends Seeder
             'role_id' => $adminRole->id,
             'name' => 'Admin',
             'email' => 'admin@mail.com',
+            'phone' => '01708166045',
             'password' => Hash::make('123456'),
             'status' => true
         ]);
@@ -32,6 +33,7 @@ class UserSeeser extends Seeder
             'role_id' => $userRole->id,
             'name' => 'User',
             'email' => 'user@mail.com',
+            'phone' => '01708166045',
             'password' => Hash::make('123456'),
             'status' => true
         ]);
@@ -42,6 +44,9 @@ class UserSeeser extends Seeder
             'role_id' => $userRole->id,
             'name' => 'Doctor',
             'email' => 'doctor@mail.com',
+            'phone' => '01708166045',
+            'degree' => "MBBS",
+            'specialists' => 'Neuro Surgeon',
             'password' => Hash::make('123456'),
             'status' => true
         ]);

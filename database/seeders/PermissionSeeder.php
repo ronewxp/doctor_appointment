@@ -47,6 +47,7 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.roles.destroy',
         ]);
 
+        // User management
         $moduleAppUser = Module::updateOrCreate(['name' => 'User Management']);
         Permission::updateOrCreate([
             'module_id' => $moduleAppUser->id,
@@ -69,6 +70,7 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.users.destroy',
         ]);
 
+        // Backup management
         $moduleAppBackup = Module::updateOrCreate(['name' => 'Backup Management']);
         Permission::updateOrCreate([
             'module_id' => $moduleAppBackup->id,
@@ -92,6 +94,7 @@ class PermissionSeeder extends Seeder
         ]);
 
 
+        // Profile management
         $moduleAppProfile = Module::updateOrCreate(['name' => 'Profile']);
         Permission::updateOrCreate([
             'module_id' => $moduleAppProfile->id,
@@ -104,7 +107,58 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.profile.password',
         ]);
 
-        
+        // Appointment management
+        $moduleAppointment = Module::updateOrCreate(['name' => 'Appointment management']);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppointment->id,
+            'name' => 'All Appointment',
+            'slug' => 'appointment.index',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppointment->id,
+            'name' => 'Appointment Create',
+            'slug' => 'appointment.create',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppointment->id,
+            'name' => 'Appointment Edit',
+            'slug' => 'appointment.edit',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppointment->id,
+            'name' => 'Delete Appointment',
+            'slug' => 'appointment.destroy',
+        ]);
+        // Patient management
+        $modulePatient = Module::updateOrCreate(['name' => 'Patient management']);
+        Permission::updateOrCreate([
+            'module_id' => $modulePatient->id,
+            'name' => 'My Appointment',
+            'slug' => 'myAppointment',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePatient->id,
+            'name' => 'All Patient List',
+            'slug' => 'patient_list',
+        ]);
+        // Doctor management
+        $moduleDoctor = Module::updateOrCreate(['name' => 'Doctor management']);
+        Permission::updateOrCreate([
+            'module_id' => $moduleDoctor->id,
+            'name' => 'Doctor Dashboard',
+            'slug' => 'doctor_dashboard',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleDoctor->id,
+            'name' => 'All Doctor List',
+            'slug' => 'doctor_list',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleDoctor->id,
+            'name' => 'Doctor Appointment',
+            'slug' => 'doctorAppointment',
+        ]);
+
 
     }
 }

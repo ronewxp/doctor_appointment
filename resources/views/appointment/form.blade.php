@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @push('css')
     <link href="{{ asset('css/cardAppointment.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 @endpush
 @section('content')
@@ -103,11 +103,12 @@
 
                                             <label for="date">Appointment Date & Time</label>
                                             <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
+
                                                 <div class="input-group date">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-calendar"></i>
                                                     </div>
-                                                    <input type='text' name="date" value="{{ $user->dob ?? old('date') }}" class="form-control pull-right" id="datepicker">
+                                                    <input type='text' name="date" value="{{ $user->dob ?? old('date') }}" class="form-control pull-right" id="CalendarDateTime">
                                                 </div>
 
                                                 @if ($errors->has('date'))
@@ -149,15 +150,20 @@
     <!-- /.content -->
 @endsection
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#datepicker').datetimepicker();
+
+    <script type="text/javascript">
+
+        $(function() {
+            $('#CalendarDateTime').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm',
+            });
         });
+
 
     </script>
 

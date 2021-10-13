@@ -11,14 +11,14 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        //Gate::authorize('app.dashboard');
+        Gate::authorize('doctor_list');
         $doctors = User::where('role_id',3)->get();
         return view('doctor.doctorList',compact('doctors'));
     }
 
     public function DoctordDashboard()
     {
-        //Gate::authorize('app.dashboard');
+        Gate::authorize('doctor_dashboard');
         $doctors = User::where('role_id',3)->get();
 
         $patient = User::where('role_id',2)->get();

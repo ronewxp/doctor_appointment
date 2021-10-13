@@ -56,7 +56,7 @@
                                 <tbody>
                                 @foreach($users as $kye=> $user)
                                     <tr>
-                                        <td > # {{$kye + 1}}</td>
+                                        <td >{{$kye + 1}}</td>
                                         <td >
                                             <div style="width: 150px"  class="media">
                                                 <div class="media-left media-middle">

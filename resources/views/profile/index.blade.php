@@ -122,13 +122,74 @@
                                         </span>
                                         @endif
                                     </div>
+
+                                    <label for="phone">Phone</label>
+                                    <div class="form-group has-feedback{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone ?? old('phone') }}" placeholder="phone"  >
+
+                                        @if ($errors->has('phone'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <label for="degree">Doctor degree</label>
+                                    <div class="form-group has-feedback{{ $errors->has('degree') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control" name="degree" value="{{ Auth::user()->degree ?? old('degree') }}" placeholder="degree"  >
+
+                                        @if ($errors->has('degree'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('degree') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <label for="description">Specialists</label>
+                                    <div class="form-group has-feedback{{ $errors->has('specialists') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control" name="specialists" value="{{ Auth::user()->specialists ?? old('specialists') }}" placeholder="Specialists" >
+
+                                        @if ($errors->has('specialists'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('specialists') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <label for="description">Weight</label>
+                                    <div class="form-group has-feedback{{ $errors->has('weight') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control" name="weight" value="{{ Auth::user()->weight ?? old('weight') }}" placeholder="Your Weight" >
+
+                                        @if ($errors->has('weight'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('weight') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="panel panel-primary">
-                                <div class="panel-heading">Select Role and Status</div>
+                                <div class="panel-heading">Image & Date of Birth</div>
                                 <div class="panel-body">
+                                    <label for="role">Date of Birth</label>
+                                    <div class="form-group has-feedback{{ $errors->has('dob') ? ' has-error' : '' }}">
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="date" name="dob" value="{{ Auth::user()->dob ?? old('dob') }}" class="form-control pull-right" id="datepicker">
+                                        </div>
+
+                                        @if ($errors->has('dob'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('dob') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
                                     <label for="avatar">Avatar</label>
                                     <div class="form-group has-feedback{{ $errors->has('avatar') ? ' has-error' : '' }}">
                                         <input type="file" class="dropify form-control" name="avatar" data-default-file="{{ Auth::user()->getFirstMediaUrl('avatar') ?? '' }}">
@@ -139,7 +200,7 @@
                                         </span>
                                         @endif
                                     </div>
-									
+
                                     <button type="submit" class="btn btn-info btn-lg">
                                             <i class="fa fa-arrow-circle-up"></i>
                                             Profile Update
@@ -170,6 +231,8 @@
     <script>
         $(document).ready(function() {
             $('.dropify').dropify();
+
+            $('#datepicker').datepicker();
         });
 
     </script>

@@ -28,14 +28,15 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 //Doctor route list
-Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
 Route::get('/doctor_dashboard', [DoctorController::class, 'DoctordDashboard'])->name('doctor_dashboard');
-
+Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
+Route::get('/doctorAppointment',[AppointmentController::class,'DoctorAppointment'])->name('doctorAppointment');
 
 //Patient route list
 Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
+Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->name('myAppointment');
 
 //appointment route list
 Route::resource('appointment', AppointmentController::class);
-Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->name('myAppointment');
-Route::get('/doctorAppointment',[AppointmentController::class,'DoctorAppointment'])->name('doctorAppointment');
+
+

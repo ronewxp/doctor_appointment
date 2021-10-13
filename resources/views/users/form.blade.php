@@ -179,13 +179,24 @@
                                         @endif
                                     </div>
 
-                                    <label for="description">Description</label>
-                                    <div class="form-group has-feedback{{ $errors->has('description') ? ' has-error' : '' }}">
-                                        <textarea type="text" class="form-control" name="description" placeholder="description" >{{ $user->description ?? old('description') }}</textarea>
+                                    <label for="description">Specialists</label>
+                                    <div class="form-group has-feedback{{ $errors->has('specialists') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control" name="specialists" value="{{ $user->specialists ?? old('specialists') }}" placeholder="Specialists" >
 
-                                        @if ($errors->has('description'))
+                                        @if ($errors->has('specialists'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('description') }}</strong>
+                                            <strong>{{ $errors->first('specialists') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <label for="description">Weight</label>
+                                    <div class="form-group has-feedback{{ $errors->has('weight') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control" name="weight" value="{{ $user->weight ?? old('weight') }}" placeholder="Your Weight" >
+
+                                        @if ($errors->has('weight'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('weight') }}</strong>
                                         </span>
                                         @endif
                                     </div>
