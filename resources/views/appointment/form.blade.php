@@ -64,7 +64,7 @@
                                         <div class="card-body">
                                             <h2>{{$doctors->name}}</h2>
                                             <h3>{{$doctors->degree}}</h3>
-                                            <h4>Specialists</h4>
+                                            <h4>{{$doctors->specialists}}</h4>
                                             @if($doctors->status)
                                                 <span class="label label-success">Active</span>
                                             @else
@@ -90,7 +90,7 @@
                                         <div class="card-body">
                                             <h2>{{$user->name}}</h2>
                                             <h3>{{$user->degree}}</h3>
-                                            <h4>Specialists</h4>
+                                            <h4>{{$user->specialists}}</h4>
                                             @if($user->status)
                                                 <span class="label label-success">Active</span>
                                             @else
@@ -108,7 +108,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-calendar"></i>
                                                     </div>
-                                                    <input type='text' name="date" value="{{ $user->dob ?? old('date') }}" class="form-control pull-right" id="CalendarDateTime">
+                                                    <input type='text' name="date" value="" class="form-control pull-right" id="CalendarDateTime">
                                                 </div>
 
                                                 @if ($errors->has('date'))

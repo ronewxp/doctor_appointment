@@ -85,7 +85,7 @@ class AppointmentController extends Controller
             'date'=>$newDate
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
-        return redirect()->route('welcome');
+        return redirect()->route('myAppointment');
     }
 
     /**

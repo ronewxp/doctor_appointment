@@ -159,6 +159,33 @@ class PermissionSeeder extends Seeder
             'slug' => 'doctorAppointment',
         ]);
 
+        //prescription management
+        $modulePrescription = Module::updateOrCreate(['name' => 'Prescription Management']);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Access Prescription',
+            'slug' => 'prescription.index',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Create Prescription',
+            'slug' => 'prescription.create',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Edit Prescription',
+            'slug' => 'prescription.edit',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Download Prescription',
+            'slug' => 'prescription.show',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Delete Prescription',
+            'slug' => 'prescription.destroy',
+        ]);
 
     }
 }

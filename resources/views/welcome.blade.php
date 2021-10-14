@@ -58,7 +58,7 @@
     <!--Card section start-->
     <section class="card-section">
         <div class="container">
-            <div class="row">
+            <div class="row doctor-card">
                 @foreach($doctors as $key=> $doctor )
                 <div class="col-md-3 col-sm-6">
                     <div class="card">

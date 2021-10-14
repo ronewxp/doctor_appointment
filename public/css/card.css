@@ -7,6 +7,10 @@
 .card-section{
     padding-bottom: 50px;
 }
+.card-section .doctor-card{
+    display: flex;
+    flex-wrap: wrap;
+}
 .card-section .col-md-3{
     margin-top: 30px;
 }
