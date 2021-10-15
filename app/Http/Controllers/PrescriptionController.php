@@ -17,7 +17,9 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        return view('prescription.presscription');
+        $prescription= Prescription::all();
+
+        return view('prescription.index',compact('prescription'));
     }
 
     /**
@@ -78,9 +80,10 @@ class PrescriptionController extends Controller
         return view('prescription.form',compact('doctors','user'));
     }
 
-    public function show1(Prescription $prescription)
+    public function showPrescription(Prescription $prescription)
     {
-        //
+        dd($prescription);
+        return view('prescription.presscription',compact('prescription'));
     }
 
     /**
