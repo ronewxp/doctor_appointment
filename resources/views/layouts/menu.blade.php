@@ -53,5 +53,11 @@
     </li>
 @endcan
 
+@can('prescription.index')
+    <li class="{{ Request::is('prescription.index*') ? 'active' : '' }}">
+        <a href="{!! route('prescription.index') !!}"><i class="fa  fa-hospital-o"></i><span>All prescription</span></a>
+    </li>
+@endcan
+
 
 

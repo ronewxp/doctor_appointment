@@ -76,14 +76,16 @@
 
                                     <td class="text-center">
                                         @can('prescription.create')
-                                        <a href="{{route('prescription.show',$prescriptions->user_id)}}"
+                                        <a href=""
                                             class="btn btn-sm btn-success">
                                             <i class="fa fa-plus"></i> Prescription
                                         </a>
                                         @endcan
 
                                         @can('prescription.show')
-                                        <a href="" class="btn btn-sm btn-primary">
+                                        <a href="{{route('showPrescription',$prescriptions->id)}}"
+                                           target="_blank"
+                                           class="btn btn-sm btn-primary">
                                             <i class="fa fa-eye"></i> Show
                                         </a>
                                         @endcan

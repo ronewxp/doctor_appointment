@@ -66,18 +66,23 @@
                                         <td  class="text-center">{{$appointments->date}} </td>
 
                                         <td  class="text-center">
-                                            @can('app.roles.index')
+                                            @can('prescription.create')
+                                                <a href="{{route('prescription.show',$appointments->user_id)}}" class="btn btn-sm btn-success" >
+                                                    <i class="fa fa-plus"></i> Prescription
+                                                </a>
+                                            @endcan
+                                            @can('appointments.index')
                                                 <a href="" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-eye"></i> Show
                                                 </a>
                                             @endcan
-                                            @can('app.roles.edit')
+                                            @can('appointments.edit')
                                                 <a href="" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                             @endcan
 
-                                            @can('app.users.destroy')
+                                            @can('appointments.destroy')
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">
                                                     <i class="fa fa-trash-o"></i> Delete
                                                 </button>

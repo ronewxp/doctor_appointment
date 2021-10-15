@@ -82,7 +82,7 @@ class PrescriptionController extends Controller
 
     public function showPrescription(Prescription $prescription)
     {
-        dd($prescription);
+        //dd($prescription);
         return view('prescription.presscription',compact('prescription'));
     }
 

@@ -104,8 +104,8 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Patient Name: {{$user->name}} || Dob: {{\Carbon\Carbon::parse($user->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}} || weight : {{$user->weight}}</div>
                                 <div class="panel-body">
-                                    <input type='text' name="doctor_id" value="{{ $user->id }}" style="display: none">
-                                    <input type='text' name="user_id" value="{{ $doctors->id }}" style="display: none">
+                                    <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
+                                    <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
                                     <input type='date' name="date" value="{{ date("Y-m-d") }}" style="display: none">
 
                                     <label for="medicine">Medicine</label>

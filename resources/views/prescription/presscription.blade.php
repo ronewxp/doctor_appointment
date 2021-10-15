@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{config('app.name')}}</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -25,19 +25,19 @@
                   <h3>www.su.edu.bd</h3>
               </div>
               <div class="doctor">
-                  <h2>Dr. Jahangir Alam</h2>
-                  <h4>mbbs(ssmc), cmu(cmud)</h4>
+                  <h2>{{$prescription->getDoctor($prescription->doctor_id)->name}}</h2>
+                  <h4>{{$prescription->getDoctor($prescription->doctor_id)->degree}}</h4>
               </div>
               <hr>
               <div class="patient">
                   <div class="name">
-                    <span><b>Name</b>: Md Jahangir Alam</span>
-                    <span><b>Age</b>: 25 years</span>
+                    <span><b>Name</b>: {{$prescription->getUser($prescription->user_id)->name}}</span>
+                    <span><b>Age</b>: {{\Carbon\Carbon::parse($prescription->getUser($prescription->user_id)->dob)->diff(\Carbon\Carbon::now())->format('%y years')}}</span>
                     <span><b>Sex</b>: Male</span>
-                    <span><b>Weight</b>: 78 kg</span>
+                    <span><b>Weight</b>: {{$prescription->getUser($prescription->user_id)->weight}} kg</span>
                   </div>
                   <div class="date">
-                      <span><b>Date</b>: 24/03/2021</span>
+                      <span><b>Date</b>: {{$prescription->date}}</span>
                   </div>
               </div>
               <hr>
@@ -45,24 +45,17 @@
                   <div class="col-md-4 report">
                       <div class="history">
                           <h2>On Examination</h2>
-                          <span>hat pa cire ane/ chabai, gastik, slepness</span>
+                          <span>{!! $prescription->examination !!}</span>
                       </div>
                       <br>
                       <div class="physicalFindings">
                           <h2>Investigation / Lab-Tests</h2>
-                          <span>Height: 5'11"</span>
-                          <span>Weight: 77.00 kg</span>
-                          <span>BP: 110/80 mmHg</span>
-                          <span>Temp: 0.00 F</span>
-                          <span>Glucose: 16.30 m mol/L</span>
+                          <span>{!! $prescription->lab_tests !!}</span>
                       </div>
                       <br>
                       <div class="advice">
                         <h2>Advice</h2>
-                        <span>#advice number one</span>
-                        <span>#advice number two</span>
-                        <span>#advice number three</span>
-                        <span>#advice number four</span>
+                        <span>{!! $prescription->advice !!}</span>
                       </div>
                   </div>
                   <div class="col-md-8 medichine">
@@ -71,45 +64,8 @@
                           <h3>Medichine::</h3>
                           <ul>
                               <li>
-                                  <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                                  <span>১+০+১ খাওয়ার পরে......চলবে</span>
+                                  {!! $prescription->medicine !!}
                               </li>
-                              <li>
-                                <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                                <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                            </li>
-                            <li>
-                                <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                                <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                            </li>
-                            <li>
-                                <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                                <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                            </li>
-                            <li>
-                                <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                                <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                            </li>
-                            <li>
-                                <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                                <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                            </li>
-                            <li>
-                              <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                              <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                          </li>
-                          <li>
-                              <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                              <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                          </li>
-                          <li>
-                              <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                              <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                          </li>
-                          <li>
-                              <span>Tab. Bigmet 850 mg/ Oramet 850 mg</span>
-                              <span>১+০+১ খাওয়ার পরে......চলবে</span>
-                          </li>
                           </ul>
                       </div>
                   </div>
