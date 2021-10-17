@@ -41,6 +41,8 @@ Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->nam
 Route::resource('appointment', AppointmentController::class);
 
 //Prescription route list
-Route::resource('prescription', PrescriptionController::class);
 Route::get('prescription/showPrescription/{prescription}',[PrescriptionController::class,'showPrescription'])->name('showPrescription');
+Route::get('prescription/myPrescription',[PrescriptionController::class,'MyPrescription'])->name('myPrescription');
+Route::get('prescription/doctorPrescription',[PrescriptionController::class,'DoctorPrescription'])->name('doctorPrescription');
+Route::resource('prescription', PrescriptionController::class);
 

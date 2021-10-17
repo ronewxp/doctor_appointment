@@ -186,6 +186,16 @@ class PermissionSeeder extends Seeder
             'name' => 'Delete Prescription',
             'slug' => 'prescription.destroy',
         ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'My Prescription',
+            'slug' => 'myPrescription',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Doctor Prescription',
+            'slug' => 'doctorPrescription',
+        ]);
 
     }
 }

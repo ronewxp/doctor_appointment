@@ -58,7 +58,7 @@
                                     <tr>
                                         <td > {{$kye + 1}}</td>
                                         <td >
-                                            <div style="width: 150px"  class="media">
+                                            <div style="width: 220px"  class="media">
                                                 <div class="media-left media-middle">
                                                     <img width="40" height="40" class="img-circle" src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="Avatar User">
                                                 </div>

@@ -17,6 +17,7 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
+        Gate::authorize('prescription.index');
         $prescription= Prescription::all();
 
         return view('prescription.index',compact('prescription'));
@@ -84,6 +85,22 @@ class PrescriptionController extends Controller
     {
         //dd($prescription);
         return view('prescription.presscription',compact('prescription'));
+    }
+
+    public function MyPrescription()
+    {
+        Gate::authorize('myPrescription');
+        $user=Auth::id();
+        $prescription = Prescription::where('user_id',$user)->get();
+        return view('prescription.myPrescription',compact('prescription'));
+    }
+
+    public function DoctorPrescription()
+    {
+        Gate::authorize('doctorPrescription');
+        $user=Auth::id();
+        $prescription = Prescription::where('doctor_id',$user)->get();
+        return view('prescription.doctorPrescription',compact('prescription'));
     }
 
     /**

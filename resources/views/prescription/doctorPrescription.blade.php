@@ -47,7 +47,6 @@
                                 <tr>
                                     <th>SL.</th>
                                     <th>Patient</th>
-                                    <th>Doctor</th>
                                     <th class="text-center">Prescription Date</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -62,13 +61,6 @@
                                         <a href="{{route('app.users.show',$prescriptions->user_id)}}">
                                             <h5 class="media-heading">
                                                 {{$prescriptions->getUser($prescriptions->user_id)->name}}</h5>
-                                        </a>
-                                    </td>
-
-                                    <td>
-                                        <a href="{{route('app.users.show',$prescriptions->doctor_id)}}">
-                                            <h5 class="media-heading">
-                                                {{$prescriptions->getDoctor($prescriptions->doctor_id)->name}}</h5>
                                         </a>
                                     </td>
 
