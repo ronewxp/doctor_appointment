@@ -58,7 +58,7 @@
                         <span>{!! $prescription->advice !!}</span>
                       </div>
                   </div>
-                  <div class="col-md-8 col-sm-4 medichine">
+                  <div class="col-md-8 col-sm-8 medichine">
                       <div class="rx">
                           <h2>Rx</h2>
                           <h3>Medichine::</h3>
