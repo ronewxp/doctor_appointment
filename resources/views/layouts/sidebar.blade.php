@@ -4,13 +4,13 @@
     <section class="sidebar">
 
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
+        <div class="user-panel" style="white-space: initial; overflow: initial;">
             <div class="pull-left image">
                 <i class="fa fa-user fa-3x"></i>
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())
-                <p>Lara</p>
+                <p>User</p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
                 @endif
