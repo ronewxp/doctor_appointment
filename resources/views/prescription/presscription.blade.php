@@ -42,7 +42,7 @@
               </div>
               <hr>
               <div class="row">
-                  <div class="col-md-4 report">
+                  <div class="col-md-4 col-sm-4 report">
                       <div class="history">
                           <h2>On Examination</h2>
                           <span>{!! $prescription->examination !!}</span>
@@ -58,7 +58,7 @@
                         <span>{!! $prescription->advice !!}</span>
                       </div>
                   </div>
-                  <div class="col-md-8 medichine">
+                  <div class="col-md-8 col-sm-4 medichine">
                       <div class="rx">
                           <h2>Rx</h2>
                           <h3>Medichine::</h3>
