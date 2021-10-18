@@ -17,6 +17,8 @@
 .card-section .card{
     background: #f7f5ed;
     border-radius: 15px;
+    height: 100%;
+    position: relative;
 }
 .card-section .card .card-header{
     max-height: 200px;
