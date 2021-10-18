@@ -71,7 +71,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
-                                <li class="user-header">
+                                <li class="user-header" style="height: auto;">
                                     <img width="40" height="40" class="img-circle" src="{{ Auth::user()->getFirstMediaUrl('avatar') != null ? Auth::user()->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}"
                                          alt="avatar">
 
