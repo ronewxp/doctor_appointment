@@ -26,11 +26,20 @@ class ProfileController extends Controller
          $this->validate($request,[
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email,'. Auth::id(),
-            'avatar' => 'nullable|image'
+            'avatar' => 'nullable|image',
+            'phone' => 'nullable|max:100|unique:users,phone,'.$user->id,
+            'degree' => 'nullable|string|max:255',
+            'specialists' => 'nullable|string|max:500',
+            'dob' => 'nullable|date',
         ]);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
+            'degree' => $request->degree,
+            'specialists' => $request->specialists,
+            'dob' => $request->dob,
+            'weight' => $request->weight,
         ]);
         // upload images
         if ($request->hasFile('avatar')) {
