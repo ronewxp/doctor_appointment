@@ -62,7 +62,7 @@
                       <div class="rx">
                           <h2>Rx</h2>
                           <h3>Medichine::</h3>
-                          <ul>
+                          <ul list-style: none;>
                               <li>
                                   {!! $prescription->medicine !!}
                               </li>
