@@ -1,11 +1,10 @@
-
 .presscription-section{
     background-color: antiquewhite;
-    padding: 50px 0px;
+    padding: 0px;
 }
 
-.presscription-section span{
-    font-size: 18px;
+.presscription-section p{
+    font-size: 14px;
 }
 .presscription-section hr{
     border-top: 3px solid #000;
@@ -13,19 +12,31 @@
 .presscription-section .container{
     background-color: #fff;
     padding: 20px;
-}
-.presscription-section .title{
-    padding-bottom: 5px;
+    max-width: 900px;
 }
 
+.presscription-section .title{
+    padding-bottom: 10px;
+}
+.presscription-section .title h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+.presscription-section .title h3{
+    font-size: 20px;
+}
 .presscription-section .title h1, .presscription-section .doctor h4{
     text-transform: uppercase;
 }
 .presscription-section .doctor h2{
     font-weight: bold;
+    font-size: 20px;
 }
-.presscription-section .medichine{
-    border-left: 2px solid black;
+.presscription-section .doctor h4{
+    font-size: 14px;
+}
+.presscription-section .report{
+    border-right: 2px solid black;
 }
 .presscription-section .patient{
     display: flex;
@@ -33,7 +44,7 @@
     align-items: center;
 }
 .presscription-section .patient .name span:nth-child(2), .presscription-section .patient .name span:nth-child(4){
-    padding: 0px 10px;
+    padding: 0px 10px;           
 }
 .presscription-section .physicalFindings span, .presscription-section .advice span, .presscription-section .rx ul li span{
     display: block;
@@ -48,5 +59,40 @@
     font-size: 20px;
 }
 .presscription-section .rx h3,.presscription-section .rx ul{
-    margin-left: 50px;
+    margin-left: 40px;
+}
+.presscription-section .report{
+    max-width: 300px;
+}
+@media screen and (max-width: 768px) {
+    .presscription-section .title h1{
+        font-size: 21px;
+    }
+    .presscription-section .title h3{
+        font-size: 16px;
+    }
+    .presscription-section p{
+        font-size: 12px;
+        text-align: justify;
+    } 
+    .presscription-section .rx h3,.presscription-section .rx ul{
+        margin-left: 0px;
+        padding-left: 20px;
+    }
+    .presscription-section .rx h3,.presscription-section .rx h3{
+        padding-left: 0px;
+    }
+    .presscription-section .doctor h2{
+        font-size: 25px;
+    }
+    .presscription-section .doctor h4{
+        font-size: 13px;
+    }
+    .presscription-section .report{
+        max-width: 160px;
+    }
+    .presscription-section .report h2{
+        font-size: 15px;
+        font-weight: bold;
+    }
 }
