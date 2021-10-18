@@ -16,19 +16,19 @@
 
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><b>Appointment</b></h4>
-                        Management
+                        <h4 class="media-heading"><b>Doctor</b></h4>
+                        Appointment
                     </div>
                 </div>
             </div>
-            @can('appointment.create')
-            <div class="col-md-2 col-md-offset-7">
-                <a href="{{route('appointment.create')}}" class="btn btn-block btn-info btn-lg">
-                    <i class="fa fa-plus-circle"></i>
-                    Appointment Create
-                </a>
-            </div>
-            @endcan
+{{--            @can('appointment.create')--}}
+{{--            <div class="col-md-2 col-md-offset-7">--}}
+{{--                <a href="{{route('appointment.create')}}" class="btn btn-block btn-info btn-lg">--}}
+{{--                    <i class="fa fa-plus-circle"></i>--}}
+{{--                    Appointment Create--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            @endcan--}}
         </div>
         <!-- /.row -->
         </br>

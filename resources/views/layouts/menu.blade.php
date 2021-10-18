@@ -31,6 +31,7 @@
 
 
 
+
 <li class="{{Request::is('app/dashboard*') || Request::is('doctor_list*') || Request::is('patient_list*') || Request::is('appointment*') || Request::is('prescription*')? 'active treeview' : 'treeview'}} ">
     <a href="#">
         <i class="fa fa-user-secret"></i>

@@ -38,7 +38,11 @@ Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_
 Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->name('myAppointment');
 
 //appointment route list
-Route::resource('appointment', AppointmentController::class);
+Route::group( ['middleware' => 'auth' ], function()
+{
+    Route::resource('appointment', AppointmentController::class);
+});
+
 
 //Prescription route list
 Route::get('prescription/showPrescription/{prescription}',[PrescriptionController::class,'showPrescription'])->name('showPrescription');

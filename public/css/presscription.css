@@ -1,8 +1,7 @@
 .presscription-section{
-    background-color: antiquewhite;
+    background-color: #fff;
     padding: 0px;
 }
-
 .presscription-section p{
     font-size: 14px;
 }
@@ -44,7 +43,7 @@
     align-items: center;
 }
 .presscription-section .patient .name span:nth-child(2), .presscription-section .patient .name span:nth-child(4){
-    padding: 0px 10px;           
+    padding: 0px 10px;
 }
 .presscription-section .physicalFindings span, .presscription-section .advice span, .presscription-section .rx ul li span{
     display: block;
@@ -74,7 +73,7 @@
     .presscription-section p{
         font-size: 12px;
         text-align: justify;
-    } 
+    }
     .presscription-section .rx h3,.presscription-section .rx ul{
         margin-left: 0px;
         padding-left: 20px;

@@ -79,17 +79,17 @@
                                                 </a>
                                             @endcan
 
-                                            @can('prescription.show')
-                                                 <a href="" class="btn btn-sm btn-primary" >
-                                                     <i class="fa fa-eye"></i> Show
-                                                 </a>
-                                            @endcan
+{{--                                            @can('prescription.show')--}}
+{{--                                                 <a href="" class="btn btn-sm btn-primary" >--}}
+{{--                                                     <i class="fa fa-eye"></i> Show--}}
+{{--                                                 </a>--}}
+{{--                                            @endcan--}}
 
-                                            @can('appointment.edit')
-                                                <a href="" class="btn btn-sm btn-info" >
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
-                                            @endcan
+{{--                                            @can('appointment.edit')--}}
+{{--                                                <a href="" class="btn btn-sm btn-info" >--}}
+{{--                                                    <i class="fa fa-edit"></i> Edit--}}
+{{--                                                </a>--}}
+{{--                                            @endcan--}}
 
                                             @can('appointment.destroy')
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">
