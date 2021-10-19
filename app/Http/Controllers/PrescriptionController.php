@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prescription;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -85,6 +86,15 @@ class PrescriptionController extends Controller
     {
         //dd($prescription);
         return view('prescription.presscription',compact('prescription'));
+    }
+
+    public function DownloadPrescription(Prescription $prescription)
+    {
+        // selecting PDF view
+        $pdf = PDF::loadView('prescription.presscription',compact('prescription'))->setOptions(['defaultFont' => 'Arvo']);
+        //dd($pdf);->setOptions(['defaultFont' => 'sans-serif'])
+        //set_time_limit(300);
+        return $pdf->download('prescription.pdf');
     }
 
     public function MyPrescription()

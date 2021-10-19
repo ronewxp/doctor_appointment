@@ -48,5 +48,6 @@ Route::group( ['middleware' => 'auth' ], function()
 Route::get('prescription/showPrescription/{prescription}',[PrescriptionController::class,'showPrescription'])->name('showPrescription');
 Route::get('prescription/myPrescription',[PrescriptionController::class,'MyPrescription'])->name('myPrescription');
 Route::get('prescription/doctorPrescription',[PrescriptionController::class,'DoctorPrescription'])->name('doctorPrescription');
+Route::get('prescription/download/{prescription}', [PrescriptionController::class,'DownloadPrescription'])->name('download.prescription');
 Route::resource('prescription', PrescriptionController::class);
 

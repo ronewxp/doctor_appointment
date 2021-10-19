@@ -196,6 +196,12 @@ class PermissionSeeder extends Seeder
             'name' => 'Doctor Prescription',
             'slug' => 'doctorPrescription',
         ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePrescription->id,
+            'name' => 'Download Prescription',
+            'slug' => 'download.prescription',
+        ]);
+
 
     }
 }
