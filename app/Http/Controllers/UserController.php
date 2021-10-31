@@ -45,7 +45,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         Gate::authorize('app.users.create');
-
+        dd($request);
         $this->validate($request,[
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users',
@@ -53,6 +53,7 @@ class UserController extends Controller
             'degree' => 'nullable|string|max:255',
             'specialists' => 'nullable|string|max:500',
             'dob' => 'nullable|date',
+            'weight' => 'nullable|numeric',
             'role' => 'required',
             'password' => 'required|confirmed|min:6',
             'avatar' => 'nullable|image',

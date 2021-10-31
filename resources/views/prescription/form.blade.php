@@ -34,10 +34,12 @@
             </div>
 
             <div class="col-md-2 col-md-offset-7">
+                @role('admin')
                 <a href="{{route('prescription.index')}}" class="btn btn-lg btn-block btn-danger">
                     <i class="fa fa-arrow-circle-left"></i>
                     Back
                 </a>
+                @endrole
             </div>
 
         </div>

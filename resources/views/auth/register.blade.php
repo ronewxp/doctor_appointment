@@ -40,8 +40,10 @@
     <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
 
-        <form method="post" action="{{ url('/register') }}">
+        <form method="POST" action="{{ route('app.users.store') }}">
             @csrf
+
+            <input type="text" name="role_id" value="2" style="display: none">
 
             <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full Name">

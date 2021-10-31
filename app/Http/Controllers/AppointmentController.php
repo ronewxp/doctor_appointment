@@ -103,6 +103,24 @@ class AppointmentController extends Controller
         return view('appointment.form',compact('doctors','user'));
     }
 
+    public function showDetails($id)
+    {
+        Gate::authorize('appointment.details');
+
+        $doctors = User::findOrFail($id);
+        $user= Auth::user();
+        return view('appointment.details',compact('doctors','user'));
+    }
+
+    public function showPatient($id)
+    {
+        Gate::authorize('appointment.details');
+
+        $user= User::findOrFail($id);
+        $doctors= Auth::user();
+        return view('appointment.detailsPatient',compact('doctors','user'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

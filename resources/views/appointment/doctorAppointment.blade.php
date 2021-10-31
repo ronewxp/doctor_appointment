@@ -71,8 +71,8 @@
                                                     <i class="fa fa-plus"></i> Prescription
                                                 </a>
                                             @endcan
-                                            @can('appointments.index')
-                                                <a href="" class="btn btn-sm btn-info" >
+                                            @can('appointment.details')
+                                                <a href="{{route('showPatient',$appointments->user_id)}}" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-eye"></i> Show
                                                 </a>
                                             @endcan

@@ -32,10 +32,12 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/doctor_dashboard', [DoctorController::class, 'DoctordDashboard'])->name('doctor_dashboard');
 Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
 Route::get('/doctorAppointment',[AppointmentController::class,'DoctorAppointment'])->name('doctorAppointment');
+Route::get('/showPatient/{id}',[AppointmentController::class,'showPatient'])->name('showPatient');
 
 //Patient route list
 Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
 Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->name('myAppointment');
+Route::get('/showDetails/{id}',[AppointmentController::class,'showDetails'])->name('showDetails');
 
 //appointment route list
 Route::group( ['middleware' => 'auth' ], function()

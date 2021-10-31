@@ -126,6 +126,11 @@ class PermissionSeeder extends Seeder
         ]);
         Permission::updateOrCreate([
             'module_id' => $moduleAppointment->id,
+            'name' => 'Appointment Details',
+            'slug' => 'appointment.details',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppointment->id,
             'name' => 'Delete Appointment',
             'slug' => 'appointment.destroy',
         ]);

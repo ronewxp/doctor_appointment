@@ -67,7 +67,7 @@
                                     <td class="text-center">{{$prescriptions->date}} </td>
 
                                     <td class="text-center">
-                                        @can('prescription.show')
+                                        @can('myPrescription')
                                         <a href="{{route('showPrescription',$prescriptions->id)}}"
                                            target="_blank"
                                            class="btn btn-sm btn-primary">
@@ -75,8 +75,8 @@
                                         </a>
                                         @endcan
 
-                                        @can('prescription.edit')
-                                        <a href="" class="btn btn-sm btn-info">
+                                        @can('myPrescription')
+                                        <a href="{{route('download.prescription',$prescriptions->id)}}" class="btn btn-sm btn-info">
                                             <i class="fa fa-download"></i> Download
                                         </a>
                                         @endcan

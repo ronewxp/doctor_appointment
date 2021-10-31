@@ -76,7 +76,7 @@
                                         @endcan
 
                                         @can('prescription.edit')
-                                        <a href="" class="btn btn-sm btn-info">
+                                        <a href="{{route('download.prescription',$prescriptions->id)}}" class="btn btn-sm btn-info">
                                             <i class="fa fa-download"></i> Download
                                         </a>
                                         @endcan

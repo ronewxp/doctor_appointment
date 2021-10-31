@@ -47,7 +47,7 @@ body{
                   </div>
               </div>
               <hr>
-              <div class="row">
+              <div class="row" style="display: flex;">
                   <div class="col-md-4 col-sm-4 report">
                       <div class="history">
                           <h2>On Examination</h2>
