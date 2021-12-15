@@ -49,6 +49,7 @@
                                     <th>Patient</th>
                                     <th>Doctor</th>
                                     <th class="text-center">Appointment Date</th>
+                                    <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -73,6 +74,14 @@
                                         <td  class="text-center">{{$appointments->date}} </td>
 
                                         <td  class="text-center">
+                                            @if($appointments->status)
+                                                <span class="label label-success">Active</span>
+                                            @else
+                                                <span class="label label-danger">InActive</span>
+                                            @endif
+                                        </td>
+
+                                        <td  class="text-center">
                                             @can('prescription.create')
                                                 <a href="{{route('prescription.show',$appointments->user_id)}}" class="btn btn-sm btn-success" >
                                                     <i class="fa fa-plus"></i> Prescription
@@ -85,11 +94,11 @@
 {{--                                                 </a>--}}
 {{--                                            @endcan--}}
 
-{{--                                            @can('appointment.edit')--}}
-{{--                                                <a href="" class="btn btn-sm btn-info" >--}}
-{{--                                                    <i class="fa fa-edit"></i> Edit--}}
-{{--                                                </a>--}}
-{{--                                            @endcan--}}
+                                            @can('appointment.edit')
+                                                <a href="{{route('appointment.edit',$appointments)}}" class="btn btn-sm btn-info" >
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
 
                                             @can('appointment.destroy')
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">

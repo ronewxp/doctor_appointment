@@ -48,6 +48,7 @@
                                     <th>#</th>
                                     <th>Doctor</th>
                                     <th class="text-center">Appointment Date</th>
+                                    <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -64,6 +65,14 @@
                                         </td>
 
                                         <td  class="text-center">{{$appointments->date}} </td>
+
+                                        <td  class="text-center">
+                                            @if($appointments->status)
+                                                <span class="label label-success">Active</span>
+                                            @else
+                                                <span class="label label-danger">InActive</span>
+                                            @endif
+                                        </td>
 
                                         <td  class="text-center">
                                             @can('appointment.details')

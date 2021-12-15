@@ -42,6 +42,7 @@ Route::get('/showDetails/{id}',[AppointmentController::class,'showDetails'])->na
 //appointment route list
 Route::group( ['middleware' => 'auth' ], function()
 {
+    Route::put('appointment/{prescription}',[AppointmentController::class,'update'])->name('appointmentUpdate');
     Route::resource('appointment', AppointmentController::class);
 });
 

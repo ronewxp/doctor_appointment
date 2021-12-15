@@ -45,7 +45,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         Gate::authorize('app.users.create');
-        dd($request);
+        //dd($request);
         $this->validate($request,[
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users',

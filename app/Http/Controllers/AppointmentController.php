@@ -20,7 +20,7 @@ class AppointmentController extends Controller
     {
         Gate::authorize('appointment.index');
 
-        $appointment = Appointment::all();
+        $appointment = Appointment::orderBy('id', 'DESC')->get();
 
         return view('appointment.index',compact('appointment'));
 
@@ -54,7 +54,10 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-
+        $users= User::Userlist();
+        $doctors= User::Doctorlist();
+        //dd($doctor);
+        return view('appointment.create',compact('users','doctors'));
     }
 
     /**
@@ -65,6 +68,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         Gate::authorize('appointment.create');
 
         $date = str_replace('/', '-', $request->input('date'));
@@ -82,7 +86,8 @@ class AppointmentController extends Controller
         $appointment = Appointment::create([
             'user_id'=>$request->user_id,
             'doctor_id'=>$request->doctor_id,
-            'date'=>$newDate
+            'date'=>$newDate,
+            'status'=>$request->filled('status')
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
         return redirect()->route('myAppointment');
@@ -118,7 +123,8 @@ class AppointmentController extends Controller
 
         $user= User::findOrFail($id);
         $doctors= Auth::user();
-        return view('appointment.detailsPatient',compact('doctors','user'));
+        $appointment= Appointment::findOrFail($id);
+        return view('appointment.detailsPatient',compact('doctors','user','appointment'));
     }
 
     /**
@@ -129,7 +135,9 @@ class AppointmentController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        //
+        $user= User::findOrFail($appointment->user_id);
+        $doctors= Auth::user();
+        return view('appointment.edit',compact('doctors','user'));
     }
 
     /**
@@ -141,7 +149,7 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        dd($request);
     }
 
     /**

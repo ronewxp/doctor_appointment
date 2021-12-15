@@ -192,7 +192,7 @@
 
                                     <label for="description">Weight</label>
                                     <div class="form-group has-feedback{{ $errors->has('weight') ? ' has-error' : '' }}">
-                                        <input type="text" class="form-control" name="weight" value="{{ $user->weight ?? old('weight') }}" placeholder="Your Weight" >
+                                        <input type="number" class="form-control" name="weight" value="{{ $user->weight ?? old('weight') }}" placeholder="Your Weight" >
 
                                         @if ($errors->has('weight'))
                                             <span class="help-block">

@@ -48,6 +48,7 @@
                                     <th>#</th>
                                     <th>Patient</th>
                                     <th class="text-center">Appointment Date</th>
+                                    <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -66,6 +67,14 @@
                                         <td  class="text-center">{{$appointments->date}} </td>
 
                                         <td  class="text-center">
+                                            @if($appointments->status)
+                                                <span class="label label-success">Active</span>
+                                            @else
+                                                <span class="label label-danger">InActive</span>
+                                            @endif
+                                        </td>
+
+                                        <td  class="text-center">
                                             @can('prescription.create')
                                                 <a href="{{route('prescription.show',$appointments->user_id)}}" class="btn btn-sm btn-success" >
                                                     <i class="fa fa-plus"></i> Prescription
@@ -76,8 +85,8 @@
                                                     <i class="fa fa-eye"></i> Show
                                                 </a>
                                             @endcan
-                                            @can('appointments.edit')
-                                                <a href="" class="btn btn-sm btn-info" >
+                                            @can('appointment.edit')
+                                                <a href="{{route('appointment.edit',$appointments->id)}}" class="btn btn-sm btn-primary" >
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                             @endcan

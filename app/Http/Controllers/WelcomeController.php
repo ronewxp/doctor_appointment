@@ -10,7 +10,7 @@ class WelcomeController extends Controller
     public function index()
     {
         //Gate::authorize('app.dashboard');
-        $doctors = User::where('role_id',3)->get();
+        $doctors = User::where('role_id',3)->where('status',1)->get();
         return view('welcome',compact('doctors'));
     }
 }

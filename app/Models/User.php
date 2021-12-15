@@ -56,8 +56,12 @@ class User extends Authenticatable implements HasMedia
         return $this->role->permissions()->where('slug',$permission)->first() ? true : false;
     }
 
-    public function doctorlist()
+    public function scopeDoctorlist($query)
     {
-        return $this->role('3')->get();
+        return $query->where('role_id' ,3)->get();
+    }
+    public function scopeUserlist($query)
+    {
+        return $query->where('role_id' ,2)->get();
     }
 }
