@@ -30,7 +30,7 @@ class AppointmentController extends Controller
     {
         Gate::authorize('myAppointment');
         $user=Auth::id();
-        $appointment = Appointment::where('user_id',$user)->get();
+        $appointment = Appointment::where('user_id',$user)->orderBy('id', 'DESC')->get();
         //dd($appointment);
 
         return view('appointment.myAppointment',compact('appointment'));
@@ -41,7 +41,7 @@ class AppointmentController extends Controller
     {
         Gate::authorize('doctorAppointment');
         $user=Auth::id();
-        $appointment = Appointment::where('doctor_id',$user)->get();
+        $appointment = Appointment::where('doctor_id',$user)->orderBy('id', 'DESC')->get();
         //dd($appointment);
 
         return view('appointment.doctorAppointment',compact('appointment'));
@@ -90,7 +90,7 @@ class AppointmentController extends Controller
             'status'=>$request->filled('status')
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
-        return redirect()->route('myAppointment');
+        return redirect()->route('appointment.index');
     }
 
     /**
@@ -140,6 +140,16 @@ class AppointmentController extends Controller
         return view('appointment.edit',compact('doctors','user'));
     }
 
+    public function adminEdit(Appointment $appointment)
+    {
+        //dd($appointment);
+        $users= User::Userlist();
+        $doctors= User::Doctorlist();
+        $appointment = $appointment;
+
+        return view('appointment.adminEdit',compact('doctors','users','appointment'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -149,7 +159,29 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        dd($request);
+        //dd($appointment);
+        Gate::authorize('appointment.edit');
+
+        $date = str_replace('/', '-', $request->input('date'));
+        // create the mysql date format
+        //$appointmentDate= Carbon::createFromFormat('Y-m-d', $date);
+        $newDate = Carbon::parse($date)->format('Y-m-d H:i');
+
+        //dd($newDate);
+        $this->validate($request,[
+            'user_id' => 'required|integer',
+            'doctor_id' => 'required|integer',
+            'date' => 'required',
+        ]);
+
+        $appointment = Appointment::create([
+            'user_id'=>$request->user_id,
+            'doctor_id'=>$request->doctor_id,
+            'date'=>$newDate,
+            'status'=>$request->filled('status')
+        ]);
+        notify()->success('Appointment Successfully Updated.', 'Updated');
+        return redirect()->route('appointment.index');
     }
 
     /**
@@ -160,6 +192,11 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        //dd($appointment);
+        Gate::authorize('appointment.destroy');
+
+        $appointment->delete();
+        notify()->success('Appointment Delete.','Success');
+        return back();
     }
 }

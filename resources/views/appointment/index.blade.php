@@ -95,17 +95,17 @@
 {{--                                            @endcan--}}
 
                                             @can('appointment.edit')
-                                                <a href="{{route('appointment.edit',$appointments)}}" class="btn btn-sm btn-info" >
+                                                <a href="{{route('appointmentEdit',$appointments->id)}}" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                             @endcan
 
                                             @can('appointment.destroy')
-                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{$appointments->id}})">
                                                     <i class="fa fa-trash-o"></i> Delete
                                                 </button>
                                             @endcan
-                                                <form id="delete-form-" method="POST" action="" style="display: none">
+                                                <form id="delete-form-{{$appointments->id}}" method="POST" action="{{route('appointment.destroy',$appointments->id)}}" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
 
