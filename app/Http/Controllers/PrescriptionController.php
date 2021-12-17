@@ -101,7 +101,7 @@ class PrescriptionController extends Controller
     {
         Gate::authorize('myPrescription');
         $user=Auth::id();
-        $prescription = Prescription::where('user_id',$user)->get();
+        $prescription = Prescription::where('user_id',$user)->orderBy('id', 'DESC')->get();
         return view('prescription.myPrescription',compact('prescription'));
     }
 
@@ -109,7 +109,7 @@ class PrescriptionController extends Controller
     {
         Gate::authorize('doctorPrescription');
         $user=Auth::id();
-        $prescription = Prescription::where('doctor_id',$user)->get();
+        $prescription = Prescription::where('doctor_id',$user)->orderBy('id', 'DESC')->get();
         return view('prescription.doctorPrescription',compact('prescription'));
     }
 

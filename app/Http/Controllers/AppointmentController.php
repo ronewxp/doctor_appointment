@@ -135,9 +135,12 @@ class AppointmentController extends Controller
      */
     public function edit(Appointment $appointment)
     {
+        //dd($appointment);
         $user= User::findOrFail($appointment->user_id);
-        $doctors= Auth::user();
-        return view('appointment.edit',compact('doctors','user'));
+        $doctor= Auth::user();
+        $appointment = $appointment;
+        //dd($appointment);
+        return view('appointment.edit',compact('doctor','user','appointment'));
     }
 
     public function adminEdit(Appointment $appointment)
@@ -157,9 +160,9 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request, $id)
     {
-        //dd($appointment);
+        //dd($request);
         Gate::authorize('appointment.edit');
 
         $date = str_replace('/', '-', $request->input('date'));
@@ -173,8 +176,9 @@ class AppointmentController extends Controller
             'doctor_id' => 'required|integer',
             'date' => 'required',
         ]);
+        $appointment = Appointment::findOrFail($id);
 
-        $appointment = Appointment::create([
+        $appointment->update([
             'user_id'=>$request->user_id,
             'doctor_id'=>$request->doctor_id,
             'date'=>$newDate,

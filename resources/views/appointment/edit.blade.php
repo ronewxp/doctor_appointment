@@ -1,82 +1,9 @@
 @extends('layouts.app')
 @push('css')
-    <link href="{{ asset('css/cardAppointment.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-
     <style>
-        .card-details {
-            margin: 10px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px black;
-            font-size: 18px;
-        }
-
-        /* span {
-            font-size: 15px;
-        } */
-
-        .col-md-4 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile {
-            border-right: 0.5px solid #80808059;
-        }
-
-        .name {
-            display: grid;
-        }
-        .avatar{
-            width: 450px;
-            height: auto;
-        }
-
-        .img-fluid {
-            border-radius: 26px;
-            width: 60%;
-            float: left;
-        }
-
-        .name h2 {
-            margin-bottom: 0px;
-        }
-
-        .name span {
-            display: block;
-        }
-
-        /* .userSection input {
-            display: block;
-            width: 100%;
-            margin: 10px 0px;
-        } */
-
-        @media screen and (max-width: 900px) {
-            .img-fluid {
-                margin-bottom: 40px;
-                padding: 10px;
-            }
-        }
-
-        @media screen and (max-width: 460px) {
-            .profile {
-                border-right: 0px;
-            }
-
-            .col-md-4 {
-                display: block;
-            }
-
-            .col-md-4:last-child {
-                padding-top: 30px;
-            }
-        }
-        /*switch Css */
         .switch {
             position: relative;
             display: inline-block;
@@ -123,6 +50,7 @@
             -ms-transform: translateX(26px);
             transform: translateX(26px);
         }
+
         /* Rounded sliders */
         .slider.round {
             border-radius: 34px;
@@ -148,13 +76,17 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading"><b>Appointment</b></h4>
-                        Details
+                        @if(isset($appointment))
+                            Update
+                        @else
+                            Create
+                        @endif
                     </div>
                 </div>
             </div>
 
             <div class="col-md-2 col-md-offset-7">
-                <a href="{{route('doctorAppointment')}}" class="btn btn-lg btn-block btn-danger">
+                <a href="{{route('appointment.index')}}" class="btn btn-lg btn-block btn-danger">
                     <i class="fa fa-arrow-circle-left"></i>
                     Back
                 </a>
@@ -167,103 +99,98 @@
         <div class="row">
             <!-- Left col -->
             <div class="col-md-12">
-                <form action="#" method="POST">
+                <form action="{{isset($appointment) ? route('appointment.update',$appointment->id) : route('appointment.store')}}" method="POST">
                 @csrf
-                {{--                @if(isset($user))--}}
-                {{--                    @method('PUT')--}}
-                {{--                @endif--}}
+                @if(isset($appointment))
+                    @method('PUT')
+                @endif
                 <!-- TABLE: LATEST ORDERS -->
                     <div class="">
-                        <div class="row card-details">
-                            <div class="col-md-4 col-sm-12">
-                                <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
-                                <div class="avatar">
-                                    <img src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}"
-                                         class="img-fluid" alt="image">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 profile">
-                                <div class="name">
-                                    <h1><b>Patient</b></h1>
-                                    <hr/>
-                                    <h4><b>Name</b>: {{$user->name}}</h4>
-                                    <h4><b>Weight</b>: {{$user->weight}}</h4>
-                                    <h4><b>Specialists</b>: {{$user->specialists}}</h4>
-                                    <h4><b>Age</b>:
-                                        {{\Carbon\Carbon::parse($user->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
-                                    </h4>
-                                    @if($doctors->status)
-                                        <span class="label label-success">Active</span>
-                                    @else
-                                        <span class="label label-danger">InActive</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Appointment</div>
+                                    <div class="panel-body">
+                                        <label for="doctor">Doctor</label>
+                                        <div class="form-group has-feedback{{ $errors->has('doctor') ? ' has-error' : '' }}">
+                                            <select class="js-example-basic-single form-control" name="doctor_id" required>
+                                                <option></option>
 
-                                <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
-                                <div class="userSection">
-                                    <h4><b>Whatsapp Number</b>: {{$user->phone}}</h4>
-                                    <h4><b>Email</b>: {{$user->email}}</h4>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                                        Patient Status
-                                    </button>
+                                                    <option value="{{$doctor->id}}" @isset($appointment){{$appointment->doctor_id == $doctor->id ? 'selected':''}} @endisset>{{$doctor->name}}</option>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Status</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form  action="{{route('appointmentUpdate',$appointment->id)}}" method="POST" >
-                                                        @csrf
-                                                        @if(isset($appointment))
-                                                            @method('PUT')
-                                                        @endif
-                                                        <label for="status">Status</label>
-                                                        <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
-                                                            <label class="switch">
-                                                                <input type="checkbox" name="status" id="status" @isset($appointment){{ $appointment->status ==true ? 'checked':'' }} @endisset>
-                                                                <span class="slider round"></span>
+                                            </select>
 
-                                                            </label>
-
-                                                            @if ($errors->has('status'))
-                                                                <span class="help-block">
-                                                                <strong>{{ $errors->first('status') }}</strong>
-                                                            </span>
-                                                            @endif
-                                                        </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" >Update Status</button>
-                                                </div>
-                                            </form>
-                                            </div>
+                                            @if ($errors->has('doctor'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('doctor') }}</strong>
+                                        </span>
+                                            @endif
                                         </div>
+
+                                        <label for="patient">Patient</label>
+                                        <div class="form-group has-feedback{{ $errors->has('patient') ? ' has-error' : '' }}">
+                                            <select class="js-example-basic-single form-control" name="user_id" required>
+                                                <option></option>
+
+                                                    <option value="{{$user->id}}" @isset($appointment){{$appointment->user_id == $user->id ? 'selected':''}} @endisset>{{$user->name}}</option>
+
+                                            </select>
+
+                                            @if ($errors->has('patient'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('patient') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+
+                                        <label for="date">Appointment Date & Time :</label>
+                                        <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
+
+                                            <div class="input-group">
+                                                <input type='text' placeholder="Please Input Date & Time" name="date" value="{{$appointment->date? $appointment->date:''}}"
+                                                       class="form-control pull-right" id="CalendarDateTime">
+
+                                            </div>
+
+                                            @if ($errors->has('date'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('date') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+
+                                        <label for="status">Status</label>
+                                        <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
+                                            <label class="switch">
+                                                <input type="checkbox" name="status" id="status" @isset($appointment){{ $appointment->status ==true ? 'checked':'' }} @endisset>
+                                                <span class="slider round"></span>
+                                            </label>
+
+                                            @if ($errors->has('status'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('status') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+
+                                        <button type="submit" class="btn btn-info btn-lg">
+                                            @if(isset($appointment))
+                                                <i class="fa fa-arrow-circle-up"></i>
+                                                appointment Update
+                                            @else
+                                                <i class="fa fa-plus-circle"></i>
+                                                appointment Create
+                                            @endif
+                                        </button>
                                     </div>
-
-                                    </br>
-                                    </br>
-                                    <button type="submit" class="btn btn-info btn-lg">
-                                            <i class="fa fa-whatsapp"></i>
-                                            Call
-                                    </button>
-
-                                    @can('prescription.create')
-                                        <a href="{{route('prescription.show',$user->id)}}" class="btn btn-lg btn-success" target="_blank" >
-                                            <i class="fa fa-plus"></i> Prescription
-                                        </a>
-                                    @endcan
                                 </div>
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-header -->
+
+
+                    </div>
+                    <!-- /.box -->
                 </form>
             </div>
             <!-- /.col -->

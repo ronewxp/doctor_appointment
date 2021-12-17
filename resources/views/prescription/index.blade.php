@@ -90,11 +90,11 @@
                                         @endcan
 
                                         @can('prescription.destroy')
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{$prescriptions->id}})">
                                             <i class="fa fa-trash-o"></i> Delete
                                         </button>
                                         @endcan
-                                        <form id="delete-form-" method="POST" action="" style="display: none">
+                                        <form id="delete-form-{{$prescriptions->id}}" method="POST" action="{{route('prescription.destroy',$prescriptions->id)}}" style="display: none">
                                             @csrf
                                             @method('DELETE')
 
