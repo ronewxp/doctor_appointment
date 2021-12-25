@@ -121,9 +121,11 @@ class AppointmentController extends Controller
     {
         Gate::authorize('appointment.details');
 
-        $user= User::findOrFail($id);
-        $doctors= Auth::user();
         $appointment= Appointment::findOrFail($id);
+        //$user= User::findOrFail($id);
+        $user= User::findOrFail($appointment->user_id);
+        $doctors= Auth::user();
+        //dd($appointment);
         return view('appointment.detailsPatient',compact('doctors','user','appointment'));
     }
 
@@ -182,6 +184,7 @@ class AppointmentController extends Controller
             'user_id'=>$request->user_id,
             'doctor_id'=>$request->doctor_id,
             'date'=>$newDate,
+            'meetLink'=>$request->meetLink,
             'status'=>$request->filled('status')
         ]);
         notify()->success('Appointment Successfully Updated.', 'Updated');

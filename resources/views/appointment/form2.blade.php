@@ -2,7 +2,81 @@
 @push('css')
     <link href="{{ asset('css/cardAppointment.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+
+    <style>
+        .card-details {
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+            font-size: 18px;
+        }
+
+        /* span {
+            font-size: 15px;
+        } */
+
+        .col-md-4 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile {
+            border-right: 0.5px solid #80808059;
+        }
+
+        .name {
+            display: grid;
+        }
+        .avatar{
+            width: 450px;
+            height: auto;
+        }
+
+        .img-fluid {
+            border-radius: 26px;
+            width: 60%;
+            float: left;
+        }
+
+        .name h2 {
+            margin-bottom: 0px;
+        }
+
+        .name span {
+            display: block;
+        }
+
+        /* .userSection input {
+            display: block;
+            width: 100%;
+            margin: 10px 0px;
+        } */
+
+        @media screen and (max-width: 900px) {
+            .img-fluid {
+                margin-bottom: 40px;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 460px) {
+            .profile {
+                border-right: 0px;
+            }
+
+            .col-md-4 {
+                display: block;
+            }
+
+            .col-md-4:last-child {
+                padding-top: 30px;
+            }
+        }
+    </style>
 @endpush
 @section('content')
     <!-- Main content -->
@@ -42,81 +116,63 @@
         <div class="row">
             <!-- Left col -->
             <div class="col-md-12">
-                <form action="{{route('appointment.store')}}" method="POST" >
+                <form action="{{route('appointment.store')}}" method="POST">
                 @csrf
-{{--                @if(isset($user))--}}
-{{--                    @method('PUT')--}}
-{{--                @endif--}}
+                {{--                @if(isset($user))--}}
+                {{--                    @method('PUT')--}}
+                {{--                @endif--}}
                 <!-- TABLE: LATEST ORDERS -->
-                <div class="">
-                    <div class="row">
-                        <div class="col-md-3 col-md-offset-3">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">Doctor Information</div>
-                                <div class="panel-body">
-
-                                    <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
-
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <img src="{{ $doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" class="img-fluid" alt="image">
-                                        </div>
-                                        <div class="card-body">
-                                            <h2>{{$doctors->name}}</h2>
-                                            <h3>{{$doctors->degree}}</h3>
-                                            <h4>{{$doctors->specialists}}</h4>
-                                            @if($doctors->status)
-                                                <span class="label label-success">Active</span>
-                                            @else
-                                                <span class="label label-danger">InActive</span>
-                                            @endif
-                                        </div>
-                                    </div>
-
+                    <div class="">
+                        <div class="row card-details">
+                            <div class="col-md-4 col-sm-12">
+                                <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
+                                <div class="avatar">
+                                    <img src="{{ $doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}"
+                                         class="img-fluid" alt="image">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">My Information</div>
-                                <div class="panel-body">
+                            <div class="col-md-4 col-sm-6 profile">
+                                <div class="name">
+                                    <h1><b>Doctor</b></h1>
+                                    <hr/>
+                                    <h4><b>Name</b>: {{$doctors->name}}</h4>
+                                    <h4><b>Degree</b>: {{$doctors->degree}}</h4>
+                                    <h4><b>Specialists</b>: {{$doctors->specialists}}</h4>
+                                    <h4><b>Age</b>:
+                                        {{\Carbon\Carbon::parse($doctors->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
+                                    </h4>
+                                    @if($doctors->status)
+                                        <span class="label label-success">Active</span>
+                                    @else
+                                        <span class="label label-danger">InActive</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
+                                <div class="userSection">
+                                    <h4><b>Name</b>: {{$user->name}}</h4>
+                                    <h4><b>Age</b>:
+                                        {{\Carbon\Carbon::parse($user->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
+                                    </h4>
 
-                                    <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
+                                    <br/>
+                                    <br/>
+                                    <label for="date">Appointment Date & Time :</label>
+                                    <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
 
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <img src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" class="img-fluid" alt="image">
+                                        <div class="input-group date">
+                                            <input type='text' placeholder="Please Input Date & Time" name="date" value=""
+                                                   class="form-control pull-right" id="CalendarDateTime">
                                         </div>
-                                        <div class="card-body">
-                                            <h2>{{$user->name}}</h2>
-                                            <h3>{{$user->degree}}</h3>
-                                            <h4>{{$user->specialists}}</h4>
-                                            @if($user->status)
-                                                <span class="label label-success">Active</span>
-                                            @else
-                                                <span class="label label-danger">InActive</span>
-                                            @endif
-                                        </div>
 
+                                        @if ($errors->has('date'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
 
-
-                                            <label for="date">Appointment Date & Time</label>
-                                            <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
-
-                                                <div class="input-group date">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </div>
-                                                    <input type='text' name="date" value="" class="form-control pull-right" id="CalendarDateTime">
-                                                </div>
-
-                                                @if ($errors->has('date'))
-                                                    <span class="help-block">
-                                                    <strong>{{ $errors->first('date') }}</strong>
-                                                </span>
-                                                @endif
-                                            </div>
                                     <button type="submit" class="btn btn-info btn-lg">
                                         @if(isset($user))
                                             <i class="fa fa-arrow-circle-up"></i>
@@ -128,16 +184,9 @@
                                     </button>
 
                                 </div>
-
-
-
-                                </div>
                             </div>
-                    <!-- /.box-header -->
-
-
-                </div>
-                <!-- /.box -->
+                        </div>
+                        <!-- /.box -->
                 </form>
             </div>
             <!-- /.col -->
@@ -150,14 +199,14 @@
     <!-- /.content -->
 @endsection
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+    </script>
 
 
     <script type="text/javascript">
-
         $(function() {
             $('#CalendarDateTime').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm',

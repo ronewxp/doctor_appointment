@@ -75,13 +75,22 @@
                                         </td>
 
                                         <td  class="text-center">
+                                            @can('appointment.meeting')
+                                                @if($appointments->meetLink)
+                                                <a href="{{ $appointments->meetLink }}" class="btn btn-sm btn-success" target="_blank">
+                                                    <i class="fa fa-plus"></i> Meeting Now
+                                                </a>
+                                                @else
+                                                @endif
+                                            @endcan
+
                                             @can('prescription.create')
                                                 <a href="{{route('prescription.show',$appointments->user_id)}}" class="btn btn-sm btn-success" >
                                                     <i class="fa fa-plus"></i> Prescription
                                                 </a>
                                             @endcan
                                             @can('appointment.details')
-                                                <a href="{{route('showPatient',$appointments->user_id)}}" class="btn btn-sm btn-info" >
+                                                <a href="{{route('showPatient',$appointments->id)}}" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-eye"></i> Show
                                                 </a>
                                             @endcan

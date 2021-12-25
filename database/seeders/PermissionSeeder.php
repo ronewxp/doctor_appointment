@@ -131,9 +131,15 @@ class PermissionSeeder extends Seeder
         ]);
         Permission::updateOrCreate([
             'module_id' => $moduleAppointment->id,
+            'name' => 'Google Meet Meeting',
+            'slug' => 'appointment.meeting',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppointment->id,
             'name' => 'Delete Appointment',
             'slug' => 'appointment.destroy',
         ]);
+
         // Patient management
         $modulePatient = Module::updateOrCreate(['name' => 'Patient management']);
         Permission::updateOrCreate([

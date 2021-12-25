@@ -103,7 +103,7 @@
             </div>
 
             <div class="col-md-2 col-md-offset-7">
-                <a href="{{route('appointment.index')}}" class="btn btn-lg btn-block btn-danger">
+                <a href="{{route('myAppointment')}}" class="btn btn-lg btn-block btn-danger">
                     <i class="fa fa-arrow-circle-left"></i>
                     Back
                 </a>
@@ -118,75 +118,105 @@
             <div class="col-md-12">
                 <form action="{{route('appointment.store')}}" method="POST">
                 @csrf
-                {{--                @if(isset($user))--}}
-                {{--                    @method('PUT')--}}
-                {{--                @endif--}}
-                <!-- TABLE: LATEST ORDERS -->
-                    <div class="">
-                        <div class="row card-details">
-                            <div class="col-md-4 col-sm-12">
-                                <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
-                                <div class="avatar">
-                                    <img src="{{ $doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}"
-                                         class="img-fluid" alt="image">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 profile">
-                                <div class="name">
-                                    <h1><b>Doctor</b></h1>
-                                    <hr/>
-                                    <h4><b>Name</b>: {{$doctors->name}}</h4>
-                                    <h4><b>Degree</b>: {{$doctors->degree}}</h4>
-                                    <h4><b>Specialists</b>: {{$doctors->specialists}}</h4>
-                                    <h4><b>Age</b>:
-                                        {{\Carbon\Carbon::parse($doctors->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
-                                    </h4>
-                                    @if($doctors->status)
-                                        <span class="label label-success">Active</span>
-                                    @else
-                                        <span class="label label-danger">InActive</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
-                                <div class="userSection">
-                                    <h4><b>Name</b>: {{$user->name}}</h4>
-                                    <h4><b>Age</b>:
-                                        {{\Carbon\Carbon::parse($user->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
-                                    </h4>
+                    <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
+                    <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img style="width: 250px" class="profile-user-img img-responsive img-rounded" src="{{$doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="User profile picture">
 
-                                    <br/>
-                                    <br/>
-                                    <label for="date">Appointment Date & Time :</label>
-                                    <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
+                            <h3 class="profile-username text-center">{{$doctors->name}}</h3>
 
-                                        <div class="input-group date">
-                                            <input type='text' placeholder="Please Input Date & Time" name="date" value=""
-                                                   class="form-control pull-right" id="CalendarDateTime">
-                                        </div>
+                            <p class="text-muted text-center">{{$doctors->email}}</p>
 
-                                        @if ($errors->has('date'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('date') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-
-                                    <button type="submit" class="btn btn-info btn-lg">
-                                        @if(isset($user))
-                                            <i class="fa fa-arrow-circle-up"></i>
-                                            Appointment Update
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b>Role</b> <a class="pull-right">
+                                        @if($doctors->role)
+                                            <span class="label label-success">{{$doctors->role->name}}</span>
                                         @else
-                                            <i class="fa fa-plus-circle"></i>
-                                            Appointment Create
+                                            <span class="label label-danger">No Role Found</span>
                                         @endif
-                                    </button>
+                                    </a>
+                                </li>
 
-                                </div>
-                            </div>
+                                <li class="list-group-item">
+                                    <b>Phone Number</b> <a class="pull-right">
+                                        {{$doctors->phone}}
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Degree</b> <a class="pull-right">
+                                        {{$doctors->degree}}
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Status</b> <a class="pull-right">
+                                        @if($doctors->status)
+                                            <span class="label label-success">Active</span>
+                                        @else
+                                            <span class="label label-danger">InActive</span>
+                                        @endif
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Date of Birth</b> <a class="pull-right">{{\Carbon\Carbon::parse($doctors->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}</a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>specialists</b> <a class="pull-right">{{ $doctors->specialists }}</a>
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Weight</b> <a class="pull-right">{{ $doctors->weight }} Kg</a>
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Joined Date</b> <a class="pull-right">{{$doctors->created_at->diffForHumans()}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Update Information</b> <a class="pull-right">{{$doctors->updated_at->diffForHumans()}}</a>
+                                </li>
+
+
+                            </ul>
+
+
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
+                    </div>
+                            <label for="date">Appointment Date & Time :</label>
+                            <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
+
+                                <div class="input-group date">
+                                    <input type='text' placeholder="Please Input Date & Time" name="date" value=""
+                                           class="form-control pull-right" id="CalendarDateTime">
+                                </div>
+
+                                @if ($errors->has('date'))
+                                    <span class="help-block">
+                                <strong>{{ $errors->first('date') }}</strong>
+                            </span>
+                                @endif
+                            </div>
+
+                            <button type="submit" class="btn btn-info btn-lg">
+                                @if(isset($user))
+                                    <i class="fa fa-arrow-circle-up"></i>
+                                    Appointment Update
+                                @else
+                                    <i class="fa fa-plus-circle"></i>
+                                    Appointment Create
+                                @endif
+                            </button>
+
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <!-- /.col -->

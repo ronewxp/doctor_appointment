@@ -167,7 +167,7 @@
         <div class="row">
             <!-- Left col -->
             <div class="col-md-12">
-                <form action="#" method="POST">
+{{--                <form action="#" method="POST">--}}
                 @csrf
                 {{--                @if(isset($user))--}}
                 {{--                    @method('PUT')--}}
@@ -192,7 +192,7 @@
                                     <h4><b>Age</b>:
                                         {{\Carbon\Carbon::parse($user->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
                                     </h4>
-                                    @if($doctors->status)
+                                    @if($appointment->status)
                                         <span class="label label-success">Active</span>
                                     @else
                                         <span class="label label-danger">InActive</span>
@@ -205,48 +205,6 @@
                                 <div class="userSection">
                                     <h4><b>Whatsapp Number</b>: {{$user->phone}}</h4>
                                     <h4><b>Email</b>: {{$user->email}}</h4>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                                        Patient Status
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Status</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form  action="{{route('appointmentUpdate',$appointment->id)}}" method="POST" >
-                                                        @csrf
-                                                        @if(isset($appointment))
-                                                            @method('PUT')
-                                                        @endif
-                                                        <label for="status">Status</label>
-                                                        <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
-                                                            <label class="switch">
-                                                                <input type="checkbox" name="status" id="status" @isset($appointment){{ $appointment->status ==true ? 'checked':'' }} @endisset>
-                                                                <span class="slider round"></span>
-
-                                                            </label>
-
-                                                            @if ($errors->has('status'))
-                                                                <span class="help-block">
-                                                                <strong>{{ $errors->first('status') }}</strong>
-                                                            </span>
-                                                            @endif
-                                                        </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" >Update Status</button>
-                                                </div>
-                                            </form>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     </br>
                                     </br>
@@ -264,7 +222,7 @@
                             </div>
                         </div>
                         <!-- /.box -->
-                </form>
+{{--                </form>--}}
             </div>
             <!-- /.col -->
 

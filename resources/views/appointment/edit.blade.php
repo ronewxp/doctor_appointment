@@ -159,6 +159,17 @@
                                             @endif
                                         </div>
 
+                                        <label for="name">Meet link</label>
+                                        <div class="form-group has-feedback{{ $errors->has('meetLink') ? ' has-error' : '' }}">
+                                            <input type="url" class="form-control" name="meetLink" value="{{ $appointment->meetLink ?? old('meetLink') }}" placeholder="Google Meet link" required >
+
+                                            @if ($errors->has('meetLink'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('meetLink') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+
                                         <label for="status">Status</label>
                                         <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
                                             <label class="switch">

@@ -20,6 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->integer('doctor_id');
             $table->boolean('status');
             $table->dateTime('date');
+            $table->string('meetLink');
 
             $table->timestamps();
         });

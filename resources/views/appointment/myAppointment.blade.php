@@ -75,6 +75,15 @@
                                         </td>
 
                                         <td  class="text-center">
+                                            @can('appointment.meeting')
+                                                @if($appointments->meetLink)
+                                                    <a href="{{ $appointments->meetLink }}" class="btn btn-sm btn-success" target="_blank">
+                                                        <i class="fa fa-plus"></i> Meeting Now
+                                                    </a>
+                                                @else
+                                                @endif
+                                            @endcan
+
                                             @can('appointment.details')
                                                 <a href="{{ route('showDetails',$appointments->doctor_id) }}" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-eye"></i> Show
