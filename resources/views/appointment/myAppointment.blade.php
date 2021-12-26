@@ -88,15 +88,10 @@
                                             @endcan
 
                                             @can('appointment.details')
-                                                <a href="{{ route('showDetails',$appointments->doctor_id) }}" class="btn btn-sm btn-info" >
+                                                <a href="{{ route('app.users.show',$appointments->doctor_id) }}" class="btn btn-sm btn-info" >
                                                     <i class="fa fa-eye"></i> Show
                                                 </a>
                                             @endcan
-{{--                                            @can('app.roles.edit')--}}
-{{--                                                <a href="" class="btn btn-sm btn-info" >--}}
-{{--                                                    <i class="fa fa-edit"></i> Edit--}}
-{{--                                                </a>--}}
-{{--                                            @endcan--}}
 
                                                 @can('appointment.destroy')
                                                     <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{$appointments->id}})">
