@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Appointment extends Model
 {
@@ -20,6 +21,7 @@ class Appointment extends Model
         $id =$uerId;
         return User::findOrFail($id)->name;
     }
+
 
 
 }

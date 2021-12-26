@@ -18,9 +18,9 @@ function display_ct7() {
     dt=dt.length==1 ? 0+dt : dt;
 
     var x1=month + "/" + dt + "/" + x.getFullYear();
-    x1 ="Date: " + x1 + " Time: " +  hours + ":" +  minutes + ":" +  seconds + " " + ampm;
+    //x1 ="Date: " + x1 + " Time: " +  hours + ":" +  minutes + ":" +  seconds + " " + ampm;
 
-    //x1 = hours + ":" +  minutes + ":" +  seconds + " " + ampm;
+    x1 = hours + ":" +  minutes + ":" +  seconds + " " + ampm;
     document.getElementById('liveClock').innerHTML = x1;
     display_c7();
 }

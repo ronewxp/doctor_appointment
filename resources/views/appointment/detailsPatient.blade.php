@@ -192,10 +192,13 @@
                                     <h4><b>Age</b>:
                                         {{\Carbon\Carbon::parse($user->dob)->diff(\Carbon\Carbon::now())->format('%y years old')}}
                                     </h4>
-                                    @if($appointment->status)
-                                        <span class="label label-success">Active</span>
-                                    @else
-                                        <span class="label label-danger">InActive</span>
+                                    @if($appointments->status== 'processing')
+                                        <span class="label label-success">Processing</span>
+                                    @elseif($appointments->status== 'running')
+                                        <span class="label label-danger">Running</span>
+                                    @elseif($appointments->status== 'complete')
+                                        <span class="label label-danger">Complete</span>
+
                                     @endif
                                 </div>
                             </div>

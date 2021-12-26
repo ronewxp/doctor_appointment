@@ -67,18 +67,21 @@
                                         <td  class="text-center">{{$appointments->date}} </td>
 
                                         <td  class="text-center">
-                                            @if($appointments->status)
-                                                <span class="label label-success">Active</span>
-                                            @else
-                                                <span class="label label-danger">InActive</span>
+                                            @if($appointments->status== 'processing')
+                                                <span class="label label-warning">Processing</span>
+                                            @elseif($appointments->status== 'running')
+                                                <span class="label label-info">Running</span>
+                                            @elseif($appointments->status== 'complete')
+                                                <span class="label label-success">Complete</span>
+
                                             @endif
                                         </td>
 
                                         <td  class="text-center">
                                             @can('appointment.meeting')
-                                                @if($appointments->meetLink)
+                                                @if($appointments->meetLink && $appointments->status== 'running')
                                                     <a href="{{ $appointments->meetLink }}" class="btn btn-sm btn-success" target="_blank">
-                                                        <i class="fa fa-plus"></i> Meeting Now
+                                                        <i class="fa fa-video-camera"></i> Meeting Now
                                                     </a>
                                                 @else
                                                 @endif
@@ -95,12 +98,12 @@
 {{--                                                </a>--}}
 {{--                                            @endcan--}}
 
-                                            @can('app.users.destroy')
-                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">
-                                                    <i class="fa fa-trash-o"></i> Delete
-                                                </button>
-                                            @endcan
-                                                <form id="delete-form-" method="POST" action="" style="display: none">
+                                                @can('appointment.destroy')
+                                                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{$appointments->id}})">
+                                                        <i class="fa fa-trash-o"></i> Delete
+                                                    </button>
+                                                @endcan
+                                                <form id="delete-form-{{$appointments->id}}" method="POST" action="{{route('appointment.destroy',$appointments->id)}}" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
 

@@ -1,66 +1,11 @@
 @extends('layouts.app')
 @push('css')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
+{{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />--}}
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />--}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-    <style>
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {display:none;}
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-    </style>
 @endpush
 @section('content')
     <!-- Main content -->
@@ -115,7 +60,7 @@
                                     <label for="doctor">Doctor</label>
                                     <div class="form-group has-feedback{{ $errors->has('doctor') ? ' has-error' : '' }}">
                                         <select class="js-example-basic-single form-control" name="doctor_id" required>
-                                            <option></option>
+                                            <option>--Select Doctor--</option>
                                             @foreach($doctors as $key=> $doctor)
                                                 <option value="{{$doctor->id}}" @isset($appointment){{$doctor->id ? 'selected':''}} @endisset>{{$doctor->name}}</option>
                                             @endforeach
@@ -131,7 +76,7 @@
                                     <label for="patient">Patient</label>
                                     <div class="form-group has-feedback{{ $errors->has('patient') ? ' has-error' : '' }}">
                                         <select class="js-example-basic-single form-control" name="user_id" required>
-                                            <option></option>
+                                            <option>--Select Patient--</option>
                                             @foreach($users as $key=> $user)
                                                 <option value="{{$user->id}}" @isset($appointment){{$user->id ? 'selected':''}} @endisset>{{$user->name}}</option>
                                             @endforeach
@@ -147,10 +92,9 @@
                                     <label for="date">Appointment Date & Time :</label>
                                     <div class="form-group has-feedback{{ $errors->has('date') ? ' has-error' : '' }}">
 
-                                        <div class="input-group">
+                                        <div class="input-group date">
                                             <input type='text' placeholder="Please Input Date & Time" name="date" value=""
                                                    class="form-control pull-right" id="CalendarDateTime">
-
                                         </div>
 
                                         @if ($errors->has('date'))
@@ -160,12 +104,14 @@
                                         @endif
                                     </div>
 
-                                    <label for="status">Status</label>
-                                    <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
-                                        <label class="switch">
-                                            <input type="checkbox" name="status" id="status" @isset($appointment){{ $appointment->status ==true ? 'checked':'' }} @endisset>
-                                            <span class="slider round"></span>
-                                        </label>
+                                    <label for="patient">Status</label>
+                                    <div class="form-group has-feedback{{ $errors->has('patient') ? ' has-error' : '' }}">
+                                        <select class="js-example-basic-single form-control" name="status" required>
+                                            <option>--Select Status--</option>
+                                                <option value="processing" @isset($appointment){{$appointment->status =='processing' ? 'selected':''}} @endisset>Processing</option>
+                                                <option value="running" @isset($appointment){{$appointment->status =='running' ? 'selected':''}} @endisset>Running</option>
+                                                <option value="complete" @isset($appointment){{$appointment->status =='complete' ? 'selected':''}} @endisset>Complete</option>
+                                        </select>
 
                                         @if ($errors->has('status'))
                                             <span class="help-block">
@@ -204,25 +150,28 @@
     <!-- /.content -->
 @endsection
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>--}}
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" ></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
 
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2({
-                placeholder: "Select",
-                allowClear: true
-            });
-
-            $('.dropify').dropify();
-
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     $('.js-example-basic-single').select2({
+        //         placeholder: "Select",
+        //         allowClear: true
+        //     });
+        //
+        //     $('.dropify').dropify();
+        //
+        // });
+        $(function() {
             $('#CalendarDateTime').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm',
             });
-
         });
 
 

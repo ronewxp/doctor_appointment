@@ -120,6 +120,7 @@
                 @csrf
                     <input type='text' name="doctor_id" value="{{ $doctors->id }}" style="display: none">
                     <input type='text' name="user_id" value="{{ $user->id }}" style="display: none">
+                    <input type='text' name="status" value="processing" style="display: none">
                     <div class="box box-primary">
                         <div class="box-body box-profile">
                             <img style="width: 250px" class="profile-user-img img-responsive img-rounded" src="{{$doctors->getFirstMediaUrl('avatar') != null ? $doctors->getFirstMediaUrl('avatar') : config('app.placeholder').'160.ping'}}" alt="User profile picture">

@@ -18,7 +18,7 @@ class CreateAppointmentsTable extends Migration
 
             $table->integer('user_id');
             $table->integer('doctor_id');
-            $table->boolean('status');
+            $table->string('status');
             $table->dateTime('date');
             $table->string('meetLink');
 

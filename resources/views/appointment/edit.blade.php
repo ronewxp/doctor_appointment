@@ -170,12 +170,14 @@
                                             @endif
                                         </div>
 
-                                        <label for="status">Status</label>
-                                        <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
-                                            <label class="switch">
-                                                <input type="checkbox" name="status" id="status" @isset($appointment){{ $appointment->status ==true ? 'checked':'' }} @endisset>
-                                                <span class="slider round"></span>
-                                            </label>
+                                        <label for="patient">Status</label>
+                                        <div class="form-group has-feedback{{ $errors->has('patient') ? ' has-error' : '' }}">
+                                            <select class="js-example-basic-single form-control" name="status" required>
+                                                <option></option>
+                                                <option value="processing" @isset($appointment){{$appointment->status =='processing' ? 'selected':''}} @endisset>Processing</option>
+                                                <option value="running" @isset($appointment){{$appointment->status =='running' ? 'selected':''}} @endisset>Running</option>
+                                                <option value="complete" @isset($appointment){{$appointment->status =='complete' ? 'selected':''}} @endisset>Complete</option>
+                                            </select>
 
                                             @if ($errors->has('status'))
                                                 <span class="help-block">

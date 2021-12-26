@@ -56,7 +56,7 @@ class AppointmentController extends Controller
     {
         $users= User::Userlist();
         $doctors= User::Doctorlist();
-        //dd($doctor);
+        //dd($doctors);
         return view('appointment.create',compact('users','doctors'));
     }
 
@@ -87,7 +87,7 @@ class AppointmentController extends Controller
             'user_id'=>$request->user_id,
             'doctor_id'=>$request->doctor_id,
             'date'=>$newDate,
-            'status'=>$request->filled('status')
+            'status'=>$request->status,
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
         return redirect()->route('appointment.index');
@@ -114,6 +114,7 @@ class AppointmentController extends Controller
 
         $doctors = User::findOrFail($id);
         $user= Auth::user();
+        //$appointment= Appointment::findOrFail($id);
         return view('appointment.details',compact('doctors','user'));
     }
 
@@ -185,7 +186,7 @@ class AppointmentController extends Controller
             'doctor_id'=>$request->doctor_id,
             'date'=>$newDate,
             'meetLink'=>$request->meetLink,
-            'status'=>$request->filled('status')
+            'status'=>$request->status,
         ]);
         notify()->success('Appointment Successfully Updated.', 'Updated');
         return redirect()->route('appointment.index');

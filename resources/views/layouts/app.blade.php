@@ -46,7 +46,7 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
 
-                <button style="margin-top: 8px" type="button" class="btn btn-primary" onclick="publicIp()">Public Ip</button>
+{{--                <button style="margin-top: 8px" type="button" class="btn btn-primary" onclick="publicIp()">Public Ip</button>--}}
 
                 <a style="margin-top: 8px" href="{{route('welcome')}}" class="btn btn-primary" target="_blank">Website</a>
 

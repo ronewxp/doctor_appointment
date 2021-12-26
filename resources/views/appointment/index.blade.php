@@ -74,16 +74,19 @@
                                         <td  class="text-center">{{$appointments->date}} </td>
 
                                         <td  class="text-center">
-                                            @if($appointments->status)
-                                                <span class="label label-success">Active</span>
-                                            @else
-                                                <span class="label label-danger">InActive</span>
+                                            @if($appointments->status== 'processing')
+                                                <span class="label label-warning">Processing</span>
+                                            @elseif($appointments->status== 'running')
+                                                <span class="label label-info">Running</span>
+                                            @elseif($appointments->status== 'complete')
+                                                <span class="label label-success">Complete</span>
+
                                             @endif
                                         </td>
 
                                         <td  class="text-center">
                                             @can('appointment.meeting')
-                                                @if($appointments->meetLink)
+                                                @if($appointments->meetLink && $appointments->status== 'running')
                                                     <a href="{{ $appointments->meetLink }}" class="btn btn-sm btn-success" target="_blank">
                                                         <i class="fa fa-plus"></i> Meeting Now
                                                     </a>
