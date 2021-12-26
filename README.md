@@ -75,11 +75,11 @@ Start the local development server
 
     php artisan serve
     
-    php artisan serve --host=0.0.0.0 --port=8080
+    php artisan serve --host=0.0.0.0 --port=8000
 
 ​
 
-You can now access the server at http://localhost:8000
+You can now access the server at http://localhost:8000 or http://127.0.0.1:8000 
 
 
 **TL;DR command list**
@@ -119,4 +119,4 @@ You can now access the server at http://localhost:8000
 
     php artisan serve
     
-    php artisan serve --host=0.0.0.0 --port=8080
+    php artisan serve --host=0.0.0.0 --port=8000
