@@ -37,6 +37,30 @@ class AppointmentController extends Controller
 
     }
 
+    public function PatientDetails($id)
+    {
+        Gate::authorize('PatientDetails');
+        $doctor=Auth::id();
+        $appointment = Appointment::where('doctor_id',$doctor)->where('user_id',$id)->orderBy('id', 'DESC')->get();
+
+        if ($appointment->count()>0)
+            $user= User::findOrFail($appointment[0]->user_id);
+        return view('appointment.patientDetails',compact('user'));
+
+    }
+
+    public function DoctorDetails($id)
+    {
+        Gate::authorize('DoctorDetails');
+        $user=Auth::id();
+        $appointment = Appointment::where('doctor_id',$id)->where('user_id',$user)->orderBy('id', 'DESC')->get();
+
+        if ($appointment->count()>0)
+            $user= User::findOrFail($appointment[0]->doctor_id);
+        return view('appointment.doctorDetails',compact('user'));
+
+    }
+
     public function DoctorAppointment()
     {
         Gate::authorize('doctorAppointment');
@@ -90,7 +114,13 @@ class AppointmentController extends Controller
             'status'=>$request->status,
         ]);
         notify()->success('Appointment Successfully Added.', 'Added');
-        return redirect()->route('appointment.index');
+        $user = Auth::user();
+        if ($user->role_id==1){
+            return redirect()->route('appointment.index');
+        }else{
+            return redirect()->route('myAppointment');
+        }
+
     }
 
     /**
@@ -145,6 +175,15 @@ class AppointmentController extends Controller
         //dd($appointment);
         return view('appointment.edit',compact('doctor','user','appointment'));
     }
+    public function doctorEdit(Appointment $appointment)
+    {
+        //dd($appointment);
+        $user= User::findOrFail($appointment->user_id);
+        $doctor= Auth::user();
+        $appointment = $appointment;
+        //dd($appointment);
+        return view('appointment.doctorEdit',compact('doctor','user','appointment'));
+    }
 
     public function adminEdit(Appointment $appointment)
     {
@@ -163,6 +202,35 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
+    public function patientUpdate(Request $request, $id)
+    {
+        //dd($request);
+        Gate::authorize('PatientUpdate');
+
+        $date = str_replace('/', '-', $request->input('date'));
+        // create the mysql date format
+        //$appointmentDate= Carbon::createFromFormat('Y-m-d', $date);
+        $newDate = Carbon::parse($date)->format('Y-m-d H:i');
+
+        //dd($newDate);
+        $this->validate($request,[
+            'user_id' => 'required|integer',
+            'doctor_id' => 'required|integer',
+            'date' => 'required',
+        ]);
+        $appointment = Appointment::findOrFail($id);
+
+        $appointment->update([
+            'user_id'=>$request->user_id,
+            'doctor_id'=>$request->doctor_id,
+            'date'=>$newDate,
+            'meetLink'=>$request->meetLink,
+            'status'=>$request->status,
+        ]);
+        notify()->success('Appointment Successfully Updated.', 'Updated');
+        return redirect()->route('doctorAppointment');
+    }
+
     public function update(Request $request, $id)
     {
         //dd($request);

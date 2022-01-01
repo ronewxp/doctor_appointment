@@ -59,7 +59,7 @@
                                         <td >{{$kye + 1}}</td>
 
                                         <td >
-                                            <a href="{{route('app.users.show',$appointments->user_id)}}">
+                                            <a href="{{route('PatientDetails',$appointments->user_id)}}">
                                                 <h5 class="media-heading">{{$appointments->getUser($appointments->user_id)}}</h5>
                                             </a>
                                         </td>
@@ -98,7 +98,7 @@
                                                 </a>
                                             @endcan
                                             @can('appointment.edit')
-                                                <a href="{{route('appointment.edit',$appointments->id)}}" class="btn btn-sm btn-primary" >
+                                                <a href="{{route('doctorEdit',$appointments->id)}}" class="btn btn-sm btn-primary" >
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                             @endcan

@@ -144,6 +144,11 @@ class PrescriptionController extends Controller
      */
     public function destroy(Prescription $prescription)
     {
-        //
+        //dd($prescription);
+        Gate::authorize('prescription.destroy');
+
+        $prescription->delete();
+        notify()->success('Prescription Delete.','Success');
+        return back();
     }
 }

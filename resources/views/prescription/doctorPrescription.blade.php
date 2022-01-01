@@ -58,7 +58,7 @@
                                     <td>{{$kye + 1}}</td>
 
                                     <td>
-                                        <a href="{{route('app.users.show',$prescriptions->user_id)}}">
+                                        <a href="{{route('PatientDetails',$prescriptions->user_id)}}">
                                             <h5 class="media-heading">
                                                 {{$prescriptions->getUser($prescriptions->user_id)->name}}</h5>
                                         </a>
@@ -82,16 +82,15 @@
                                         @endcan
 
                                         @can('prescription.destroy')
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData()">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{$prescriptions->id}})">
                                             <i class="fa fa-trash-o"></i> Delete
                                         </button>
                                         @endcan
-                                        <form id="delete-form-" method="POST" action="" style="display: none">
+                                        <form id="delete-form-{{$prescriptions->id}}" method="POST" action="{{route('prescription.destroy',$prescriptions->id)}}" style="display: none">
                                             @csrf
                                             @method('DELETE')
 
                                         </form>
-
                                     </td>
                                 </tr>
                                 @endforeach

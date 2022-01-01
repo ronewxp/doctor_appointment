@@ -31,6 +31,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Doctor route list
 Route::get('/doctor_dashboard', [DoctorController::class, 'DoctordDashboard'])->name('doctor_dashboard');
 Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
+Route::get('/PatientDetails/{id}', [AppointmentController::class, 'PatientDetails'])->name('PatientDetails');
+Route::get('/doctorEdit/{appointment}', [AppointmentController::class, 'doctorEdit'])->name('doctorEdit');
+Route::put('/patientUpdate/{appointment}', [AppointmentController::class, 'patientUpdate'])->name('patientUpdate');
 Route::get('/doctorAppointment',[AppointmentController::class,'DoctorAppointment'])->name('doctorAppointment');
 Route::get('/showPatient/{id}',[AppointmentController::class,'showPatient'])->name('showPatient');
 
@@ -38,6 +41,7 @@ Route::get('/showPatient/{id}',[AppointmentController::class,'showPatient'])->na
 Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
 Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->name('myAppointment');
 Route::get('/showDetails/{id}',[AppointmentController::class,'showDetails'])->name('showDetails');
+Route::get('/doctorDetails/{id}', [AppointmentController::class, 'DoctorDetails'])->name('DoctorDetails');
 
 //appointment route list
 Route::group( ['middleware' => 'auth' ], function()

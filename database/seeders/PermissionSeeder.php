@@ -152,6 +152,11 @@ class PermissionSeeder extends Seeder
             'name' => 'All Patient List',
             'slug' => 'patient_list',
         ]);
+        Permission::updateOrCreate([
+            'module_id' => $modulePatient->id,
+            'name' => 'Doctor Details',
+            'slug' => 'DoctorDetails',
+        ]);
         // Doctor management
         $moduleDoctor = Module::updateOrCreate(['name' => 'Doctor management']);
         Permission::updateOrCreate([
@@ -169,6 +174,18 @@ class PermissionSeeder extends Seeder
             'name' => 'Doctor Appointment',
             'slug' => 'doctorAppointment',
         ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleDoctor->id,
+            'name' => 'Patient Details',
+            'slug' => 'PatientDetails',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleDoctor->id,
+            'name' => 'Patient Update',
+            'slug' => 'PatientUpdate',
+        ]);
+
 
         //prescription management
         $modulePrescription = Module::updateOrCreate(['name' => 'Prescription Management']);
