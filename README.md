@@ -104,6 +104,16 @@ You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
     
     php artisan migrate --path='./database/migrations/2021_10_08_151109_create_appointments_table.php'
     
+    php artisan migrate:rollback
+    
+    php artisan migrate:rollback --step=5
+    
+    php artisan migrate:reset
+    
+    php artisan migrate:refresh --seed
+    
+    php artisan migrate:fresh --seed
+    
     php artisan db:seed
     
     php artisan db:seed --class=UserSeeder
