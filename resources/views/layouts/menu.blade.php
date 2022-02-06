@@ -1,5 +1,6 @@
 <li class="{{Request::is('app/users*') || Request::is('app/roles*') || Request::is('app/backups*')? 'active treeview' : 'treeview'}} ">
 
+    @can('app.users.index')
     <a href="#">
         <i class="fa fa-user"></i>
         <span>User Management</span>
@@ -7,7 +8,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
-
+    @endcan
     <ul class="treeview-menu">
 
         @can('app.roles.index')
@@ -36,6 +37,7 @@
 
 <li class="{{Request::is('app/dashboard*') || Request::is('doctor_list*') || Request::is('patient_list*') || Request::is('appointment*') || Request::is('prescription*')? 'active treeview' : 'treeview'}} ">
 
+    @can('app.dashboard')
     <a href="#">
         <i class="fa fa-user-secret"></i>
         <span>Admin Management</span>
@@ -43,6 +45,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
+    @endcan
     <ul class="treeview-menu">
 
         @can('app.dashboard')

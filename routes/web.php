@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -41,11 +42,12 @@ Route::get('/showPatient/{id}',[AppointmentController::class,'showPatient'])->na
 Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
 Route::get('/myAppointment',[AppointmentController::class,'myAppointment'])->name('myAppointment');
 Route::get('/showDetails/{id}',[AppointmentController::class,'showDetails'])->name('showDetails');
-Route::get('/doctorDetails/{id}', [AppointmentController::class, 'DoctorDetails'])->name('DoctorDetails');
+
 
 //appointment route list
 Route::group( ['middleware' => 'auth' ], function()
 {
+    Route::get('/doctorDetails/{id}', [AppointmentController::class, 'DoctorDetails'])->name('DoctorDetails');
     Route::get('/appointmentEdit/{appointment}',[AppointmentController::class,'adminEdit'])->name('appointmentEdit');
     Route::put('appointment/{prescription}',[AppointmentController::class,'update'])->name('appointmentUpdate');
     Route::resource('appointment', AppointmentController::class);

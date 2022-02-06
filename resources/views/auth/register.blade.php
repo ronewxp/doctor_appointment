@@ -43,7 +43,6 @@
         <form method="POST" action="{{ route('register') }}" >
             @csrf
 
-            <input type="text" name="role_id" value="2" style="display: none">
             <input type="text" name="status" value="1" style="display: none">
 
             <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -86,6 +85,22 @@
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('role_id') ? ' has-error' : '' }}">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="3" name="role_id" id="role-3"/>
+                    <label class="form-check-label" for="role-3"> Doctor </label>
+
+                    <input class="form-check-input" type="radio" value="2" name="role_id" id="role-2"/>
+                    <label class="form-check-label" for="role-2"> Patient </label>
+                </div>
+
+                @if ($errors->has('role_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('role_id') }}</strong>
                     </span>
                 @endif
             </div>

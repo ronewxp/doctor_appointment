@@ -79,7 +79,7 @@
                         <div class="card-footer">
                             <a href="{{route('appointment.show',$doctor->id)}}"
                                 class="btn btn-primary rounded-pill">Appointment</a>
-                            <a href="{{route('app.users.show',$doctor->id)}}"
+                            <a href="{{route('DoctorDetails',$doctor->id)}}"
                                 class="btn btn-success rounded-pill">Details</a>
                         </div>
                     </div>
