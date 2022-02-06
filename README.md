@@ -95,12 +95,24 @@ You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
     npm install
     
     npm update
+    
+    composer dump-autoload
 
     cp .env.example .env
 
     php artisan key:generate
     
     php artisan migrate --path='./database/migrations/2021_10_08_151109_create_appointments_table.php'
+    
+    php artisan migrate:rollback
+    
+    php artisan migrate:rollback --step=5
+    
+    php artisan migrate:reset
+    
+    php artisan migrate:refresh --seed
+    
+    php artisan migrate:fresh --seed
     
     php artisan db:seed
     
@@ -109,6 +121,10 @@ You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
     php artisan migrate:fresh --seed
     
     php artisan db:seed --force
+    
+    php artisan cache:clear
+    
+    npm cache clean --force
     
 
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
