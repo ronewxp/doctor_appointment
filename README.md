@@ -126,6 +126,8 @@ You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
     
     npm cache clean --force
     
+    php artisan optimize
+    
 
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
 
