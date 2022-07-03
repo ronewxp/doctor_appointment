@@ -75,6 +75,11 @@ Start the local development server
 
     php artisan serve
     
+​
+Start the local development server Host & Post
+
+​
+
     php artisan serve --host=0.0.0.0 --port=8000
 
 ​
@@ -87,20 +92,34 @@ You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
 ​
 
     git clone https://github.com/ronewxp/doctor_appointment.git
+    
+    cp .env.example .env    
 
     composer install
     
+    composer install --ignore-platform-req=php
+    
+    composer show -p
+    
     composer update
+    
+    composer dump-autoload
+    
+    php artisan key:generate
+    
+        
+​ NPM Comment 
 
     npm install
     
+    npm run dev
+    
     npm update
     
-    composer dump-autoload
+    npm cache clean --force
+    
 
-    cp .env.example .env
-
-    php artisan key:generate
+​ Artisan Migrate All Commend
     
     php artisan migrate --path='./database/migrations/2021_10_08_151109_create_appointments_table.php'
     
@@ -122,11 +141,18 @@ You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
     
     php artisan db:seed --force
     
+    
+   ​ Artisan All Clear Command
+    
     php artisan cache:clear
     
-    npm cache clean --force
-    
     php artisan optimize
+    
+    php artisan route:clear
+    
+    php artisan view:clear
+    
+    php artisan config:clear
     
 
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
